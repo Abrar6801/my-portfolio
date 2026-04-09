@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abrarullah Mohammed | AI/ML Engineer</title>
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; script-src 'self'; connect-src 'self';">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Abrarullah Mohammed | AI/ML Engineer">
+  <meta property="og:description" content="Building intelligent systems at the intersection of deep learning, NLP, and computer vision.">
+  <meta property="og:image" content="photo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Abrarullah Mohammed | AI/ML Engineer">
+  <meta name="twitter:description" content="Building intelligent systems at the intersection of deep learning, NLP, and computer vision.">
+  <meta name="twitter:image" content="photo.jpg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div id="cursor" aria-hidden="true"></div>
+
+  <!-- Scroll to top -->
+  <button id="scrollTop" aria-label="Scroll to top">↑</button>
+
+  <!-- ===== NAVBAR ===== -->
+  <header>
+    <nav id="navbar" role="navigation" aria-label="Main navigation">
+      <a href="#about" class="nav-logo">AM_</a>
+      <ul class="nav-links" role="list">
+        <li><a href="#about"        data-sec="about">About</a></li>
+        <li><a href="#skills"       data-sec="skills">Skills</a></li>
+        <li><a href="#experience"   data-sec="experience">Experience</a></li>
+        <li><a href="#projects"     data-sec="projects">Projects</a></li>
+        <li><a href="#education"    data-sec="education">Education</a></li>
+        <li><a href="#contact"      data-sec="contact">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+      <ul role="list">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ===== HERO ===== -->
+    <section id="about">
+      <div class="hero-inner">
+
+        <div class="hero-left">
+          <div class="term-pill">
+            <span class="term-dot" aria-hidden="true"></span>
+            <span>ABRARULLAH ~ $ whoami</span>
+          </div>
+
+          <h1 class="hero-name" id="heroName" aria-label="Abrarullah Mohammed">
+            <span class="hero-word" id="heroWord1"></span>
+            <span class="hero-word" id="heroWord2"></span>
+          </h1>
+
+          <div class="hero-tw" aria-live="polite" aria-label="Current role">
+            <span id="twText"></span><span id="twCursor" aria-hidden="true">_</span>
+          </div>
+
+          <p class="hero-bio">AI/ML-focused Software Engineer with hands-on experience building machine learning pipelines, large-scale data analytics platforms, and full-stack AI applications using Python, PyTorch, PySpark, and React. MS Computer Science at Cal State Fullerton.</p>
+
+          <div class="hero-pills">
+            <span class="hpill">📍 Fullerton, CA</span>
+            <span class="hpill">✉ abrarullahm2001@gmail.com</span>
+          </div>
+
+          <div class="hero-btns">
+            <a href="#projects" class="btn-p">View Projects ↓</a>
+            <div class="resume-wrap">
+              <button class="btn-s" id="resumeBtn">Download Resume ↗</button>
+              <div class="resume-drop" id="resumeDrop">
+                <a href="Abrarullah_mohammed_Software_engineer_Resume.pdf" download class="resume-opt">💼 Software Engineer</a>
+                <a href="Abrarullah_Mohammed_AI_ML_Resume.pdf" download class="resume-opt">🤖 AI / ML Engineer</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-soc">
+            <a href="https://github.com/Abrar6801" class="soc-a" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/mohammed-abrarullah-92886a193" class="soc-a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+          </div>
+
+          <div class="otw" id="otwBadge">
+            <span class="otw-dot" aria-hidden="true"></span>
+            <span>Open to Work</span>
+            <button class="otw-x" id="otwX" aria-label="Dismiss open to work badge">×</button>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="photo-wrap">
+            <img src="photo.jpg" alt="Portrait of Abrarullah Mohammed, AI/ML Engineer" loading="eager" width="300" height="300">
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section id="skills">
+      <div class="skills-inner">
+        <div class="sec-header fi">
+          <h2 class="sec-title">Technical Arsenal</h2>
+          <p class="sec-sub">40+ Technologies</p>
+          <div class="sec-bar"></div>
+        </div>
+
+        <!-- Infinite carousel -->
+        <div class="car-wrap fi" aria-hidden="true">
+          <div class="car-row">
+            <div class="car-track go-l" id="cr1"></div>
+          </div>
+          <div class="car-row">
+            <div class="car-track go-r" id="cr2"></div>
+          </div>
+        </div>
+
+        <!-- Skill cards -->
+        <div class="skill-grid">
+          <div class="skill-card fi">
+            <div class="sk-title">// Languages</div>
+            <div class="sk-tags">
+              <span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">JavaScript</span>
+              <span class="sk-tag">TypeScript</span><span class="sk-tag">SQL</span><span class="sk-tag">R</span><span class="sk-tag">HTML/CSS</span>
+            </div>
+          </div>
+          <div class="skill-card fi">
+            <div class="sk-title">// AI/ML Frameworks</div>
+            <div class="sk-tags">
+              <span class="sk-tag">PyTorch</span><span class="sk-tag">TensorFlow</span><span class="sk-tag">Keras</span>
+              <span class="sk-tag">scikit-learn</span><span class="sk-tag">Hugging Face</span><span class="sk-tag">OpenAI API</span>
+            </div>
+          </div>
+          <div class="skill-card fi">
+            <div class="sk-title">// Models &amp; Techniques</div>
+            <div class="sk-tags">
+              <span class="sk-tag">CNNs</span><span class="sk-tag">Transfer Learning</span><span class="sk-tag">NLP</span>
+              <span class="sk-tag">Computer Vision</span><span class="sk-tag">K-Means</span><span class="sk-tag">Time-Series</span>
+              <span class="sk-tag">CodeBERT</span><span class="sk-tag">CodeT5</span><span class="sk-tag">VGG16</span>
+            </div>
+          </div>
+          <div class="skill-card fi">
+            <div class="sk-title">// Data &amp; Big Data</div>
+            <div class="sk-tags">
+              <span class="sk-tag">PySpark</span><span class="sk-tag">Pandas</span><span class="sk-tag">NumPy</span>
+              <span class="sk-tag">PostgreSQL</span><span class="sk-tag">MySQL</span><span class="sk-tag">Feature Engineering</span>
+              <span class="sk-tag">ETL Pipelines</span>
+            </div>
+          </div>
+          <div class="skill-card fi">
+            <div class="sk-title">// Tools &amp; Platforms</div>
+            <div class="sk-tags">
+              <span class="sk-tag">FastAPI</span><span class="sk-tag">Flask</span><span class="sk-tag">React.js</span>
+              <span class="sk-tag">Git</span><span class="sk-tag">Matplotlib</span><span class="sk-tag">Seaborn</span>
+              <span class="sk-tag">Agile/Scrum</span>
+            </div>
+          </div>
+          <div class="skill-card fi">
+            <div class="sk-title">// Concepts</div>
+            <div class="sk-tags">
+              <span class="sk-tag">Transformers</span><span class="sk-tag">LLMs</span><span class="sk-tag">Model Evaluation</span>
+              <span class="sk-tag">Explainable AI</span><span class="sk-tag">Distributed Processing</span><span class="sk-tag">MLOps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section id="experience" class="swrap">
+      <div class="sec-header fi">
+        <h2 class="sec-title">Professional Experience</h2>
+        <div class="sec-bar"></div>
+      </div>
+
+      <div class="timeline">
+
+        <article class="tcard fi">
+          <div class="thead">
+            <div>
+              <div class="t-role">Software Engineering Intern</div>
+              <div class="t-co">Ennea Solutions</div>
+            </div>
+            <div class="t-meta"><div>Dec 2022 – Feb 2023</div><div>Telangana, India</div></div>
+          </div>
+          <ul class="t-list">
+            <li>Reduced recurring API errors by 30% by debugging Python backend services, refactoring SQL queries, and implementing validation layers</li>
+            <li>Accelerated feature delivery by 20% by collaborating in Agile sprints, translating requirements into REST endpoints, and participating in code reviews</li>
+            <li>Increased maintainability of legacy modules by writing unit tests and restructuring tightly coupled components, reducing post-release incidents</li>
+            <li>Resolved critical production issues within SLA through root-cause analysis using application logs and version control history</li>
+          </ul>
+        </article>
+
+        <article class="tcard fi">
+          <div class="thead">
+            <div>
+              <div class="t-role">Community Service Officer</div>
+              <div class="t-co">CSUF Police Department</div>
+            </div>
+            <div class="t-meta"><div>Jul 2024 – Jan 2026</div><div>Fullerton, CA</div></div>
+          </div>
+          <ul class="t-list">
+            <li>Patrolled university campus and provided safety escorts to students, faculty, and staff as primary support for sworn officers</li>
+            <li>CPR &amp; First Aid certified, pepper spray trained, completed defensive driving and bike patrol certification programs</li>
+            <li>Hosted community engagement events and trained in police radio codes and emergency coordination protocols</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section id="projects" class="swrap">
+      <div class="sec-header fi">
+        <h2 class="sec-title">Selected Projects</h2>
+        <div class="sec-bar"></div>
+      </div>
+
+      <div class="proj-stack">
+
+        <article class="pcard fi">
+          <div class="ptop">
+            <h3 class="ptitle">AIReviewHub — Code Review Automation Platform</h3>
+            <a href="https://github.com/Abrar6801/AIReviewHub" class="lbtn" target="_blank" rel="noopener noreferrer" aria-label="AIReviewHub on GitHub">↗ GitHub</a>
+          </div>
+          <div class="tech-row">
+            <span class="tp">Python</span><span class="tp">PyTorch</span><span class="tp">CodeBERT</span>
+            <span class="tp">CodeT5</span><span class="tp">scikit-learn</span><span class="tp">FastAPI</span>
+          </div>
+          <p class="pdesc">AI-powered code review system analyzing 1,000+ code snippets using CodeBERT embeddings and static analysis. Generates automated suggestions for code complexity, security vulnerabilities, and maintainability. Features an explainable AI layer with confidence scoring and reasoning traces.</p>
+          <div class="metrics">
+            <div class="metric"><span class="mv" data-count="35" data-suffix="%">—</span><span class="ml">Better Accuracy</span></div>
+            <div class="metric"><span class="mv" data-count="60" data-suffix="%">—</span><span class="ml">Less Manual Review</span></div>
+            <div class="metric"><span class="mv" data-count="90" data-suffix="%+">—</span><span class="ml">F1 Score</span></div>
+            <div class="metric"><span class="mv" data-count="40" data-suffix="%">—</span><span class="ml">Dev Acceptance</span></div>
+          </div>
+        </article>
+
+        <article class="pcard fi">
+          <div class="ptop">
+            <h3 class="ptitle">Fighter Jet Detection using CNN and Transfer Learning</h3>
+            <a href="https://ieeexplore.ieee.org/document/10334976" class="lbtn" target="_blank" rel="noopener noreferrer" aria-label="IEEE paper on IEEEXplore">↗ IEEE Xplore</a>
+          </div>
+          <div class="tech-row">
+            <span class="tp">Python</span><span class="tp">TensorFlow</span><span class="tp">Keras</span>
+            <span class="tp">VGG16</span><span class="tp">OpenCV</span>
+          </div>
+          <p class="pdesc">Convolutional neural network trained on aerial imagery achieving 94% detection accuracy across varied lighting and angles. Model quantization and batch optimization reduced inference time. Preprocessing pipeline to reduce noise. Published and presented at IEEE ICSCC 2023.</p>
+          <div class="metrics">
+            <div class="metric"><span class="mv" data-count="94" data-suffix="%">—</span><span class="ml">Detection Accuracy</span></div>
+            <div class="metric"><span class="mv" data-count="40" data-suffix="%">—</span><span class="ml">Faster Inference</span></div>
+            <div class="metric"><span class="mv" data-count="30" data-suffix="%">—</span><span class="ml">Noise Reduction</span></div>
+            <div class="metric"><span class="mv" data-static="true">IEEE</span><span class="ml">ICSCC Published</span></div>
+          </div>
+        </article>
+
+        <article class="pcard fi">
+          <div class="ptop">
+            <h3 class="ptitle">E-Commerce Big Data Analytics Platform</h3>
+          </div>
+          <div class="tech-row">
+            <span class="tp">Python</span><span class="tp">PySpark</span><span class="tp">PostgreSQL</span>
+            <span class="tp">Flask</span><span class="tp">React</span><span class="tp">MLlib</span>
+          </div>
+          <p class="pdesc">Distributed ETL pipeline ingesting 3 CSV datasets into PostgreSQL, processing 14,000+ records with PySpark. K-Means customer segmentation with 92% clustering coherence. Exponential smoothing time-series forecasting. 7 REST APIs and a React dashboard for real-time business intelligence.</p>
+          <div class="metrics">
+            <div class="metric"><span class="mv" data-count="14000" data-suffix="+">—</span><span class="ml">Records Processed</span></div>
+            <div class="metric"><span class="mv" data-count="90" data-suffix="%">—</span><span class="ml">Analysis Time Reduction</span></div>
+            <div class="metric"><span class="mv" data-count="92" data-suffix="%">—</span><span class="ml">Clustering Coherence</span></div>
+            <div class="metric"><span class="mv" data-count="85" data-suffix="%">—</span><span class="ml">Forecast Accuracy</span></div>
+          </div>
+        </article>
+
+        <article class="pcard fi">
+          <div class="ptop">
+            <h3 class="ptitle">Task Manager — Full-Stack Web Application</h3>
+            <a href="https://github.com/Abrar6801/Task-manager---Web-application" class="lbtn" target="_blank" rel="noopener noreferrer" aria-label="Task Manager on GitHub">↗ GitHub</a>
+          </div>
+          <div class="tech-row">
+            <span class="tp">Python</span><span class="tp">Flask</span><span class="tp">SQLAlchemy</span>
+            <span class="tp">OAuth2</span><span class="tp">OpenAI API</span><span class="tp">Bootstrap</span>
+          </div>
+          <p class="pdesc">Multi-user task management platform with full CRUD operations, Google OAuth SSO, session-based authentication, and role-based admin portal. Integrated OpenAI GPT-4o-mini to generate AI-powered daily schedules based on user role and goals.</p>
+          <div class="metrics">
+            <div class="metric"><span class="mv" data-static="true">Full</span><span class="ml">CRUD</span></div>
+            <div class="metric"><span class="mv" data-static="true">Google</span><span class="ml">SSO Auth</span></div>
+            <div class="metric"><span class="mv" data-static="true">GPT-4o</span><span class="ml">AI Scheduling</span></div>
+            <div class="metric"><span class="mv" data-count="6" data-suffix="">—</span><span class="ml">HTML Templates</span></div>
+          </div>
+        </article>
+
+        <article class="pcard fi">
+          <div class="ptop">
+            <h3 class="ptitle">On-Chain Voting DApp</h3>
+            <a href="https://github.com/MYASHWANTHREDDY/On-chain-voting-dapp" class="lbtn" target="_blank" rel="noopener noreferrer" aria-label="On-Chain Voting DApp on GitHub">↗ GitHub</a>
+          </div>
+          <div class="tech-row">
+            <span class="tp">Solidity</span><span class="tp">React</span><span class="tp">Hardhat</span>
+            <span class="tp">MetaMask</span><span class="tp">Ethereum</span>
+          </div>
+          <p class="pdesc">Decentralized voting application on Ethereum with multi-hop vote delegation, loop prevention, and chairperson-controlled election lifecycle. Deployed to Sepolia testnet. Frontend communicates directly with blockchain via MetaMask wallet.</p>
+          <div class="metrics">
+            <div class="metric"><span class="mv" data-static="true">ETH</span><span class="ml">Ethereum Blockchain</span></div>
+            <div class="metric"><span class="mv" data-static="true">Multi-hop</span><span class="ml">Vote Delegation</span></div>
+            <div class="metric"><span class="mv" data-static="true">Sepolia</span><span class="ml">Testnet Deployed</span></div>
+            <div class="metric"><span class="mv" data-static="true">React</span><span class="ml">Frontend</span></div>
+          </div>
+        </article>
+
+      </div>
+
+      <p class="sub-label fi">// Mini Projects</p>
+      <div class="mini-grid">
+
+        <article class="mcard fi">
+          <h4 class="mtitle">A* Pathfinding Visualizer</h4>
+          <div class="tech-row"><span class="tp">Python</span><span class="tp">Pygame</span></div>
+          <p class="mdesc">Algorithm visualization with animated grid showing A* pathfinding in real-time.</p>
+          <a href="https://github.com/Abrar6801/A-star-Algorithm" class="lbtn" target="_blank" rel="noopener noreferrer" aria-label="A* Pathfinding Visualizer on GitHub">↗ GitHub</a>
+        </article>
+
+        <article class="mcard fi">
+          <h4 class="mtitle">Blockchain Zombie NFT DApp</h4>
+          <div class="tech-row"><span class="tp">Solidity</span><span class="tp">Truffle</span><span class="tp">MetaMask</span></div>
+          <p class="mdesc">CryptoZombies-inspired NFT game with battle and evolution mechanics on-chain.</p>
+          <a href="https://github.com/Abrar6801/Advance-Blockchain-Mid-term-project" class="lbtn" target="_blank" rel="noopener noreferrer" aria-label="Blockchain Zombie NFT DApp on GitHub">↗ GitHub</a>
+        </article>
+
+        <article class="mcard fi">
+          <h4 class="mtitle">AI Daily Scheduler</h4>
+          <div class="tech-row"><span class="tp">Python</span><span class="tp">OpenAI GPT-4o-mini</span></div>
+          <p class="mdesc">Role-aware intelligent task scheduling engine embedded in the Task Manager application.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== EDUCATION ===== -->
+    <section id="education" class="swrap">
+      <div class="sec-header fi">
+        <h2 class="sec-title">Education</h2>
+        <div class="sec-bar"></div>
+      </div>
+
+      <div class="edu-grid">
+
+        <article class="edu-card fi">
+          <div class="edu-icon" aria-hidden="true">🎓</div>
+          <div class="edu-deg">Master of Science in Computer Science</div>
+          <div class="edu-school">California State University, Fullerton</div>
+          <div class="edu-meta">
+            <span>Jan 2024 – Jan 2026</span>
+            <span class="edu-gpa">GPA: 3.57</span>
+          </div>
+          <div class="edu-cl">Relevant Coursework</div>
+          <div class="edu-c">Artificial Intelligence · Advanced Algorithms · Advanced Database Management · OS Design · Modern Software Management</div>
+        </article>
+
+        <article class="edu-card fi">
+          <div class="edu-icon" aria-hidden="true">🎓</div>
+          <div class="edu-deg">Bachelor of Technology in Computer Science</div>
+          <div class="edu-school">BV Raju Institute of Technology (BVRIT)</div>
+          <div class="edu-meta">
+            <span>Aug 2019 – Jun 2023</span>
+            <span class="edu-gpa">GPA: 3.7 (8.53/10)</span>
+          </div>
+          <div class="edu-cl">Relevant Coursework</div>
+          <div class="edu-c">Machine Learning Techniques · Data Science with R · Data Warehousing &amp; Mining · Probability &amp; Statistics · Algorithms</div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== PUBLICATIONS & CERTIFICATIONS ===== -->
+    <section id="publications" class="swrap">
+      <div class="sec-header fi">
+        <h2 class="sec-title">Publications &amp; Certifications</h2>
+        <div class="sec-bar"></div>
+      </div>
+
+      <p class="sub-label fi">// Publications</p>
+      <div class="pub-card fi">
+        <div>
+          <div class="pub-title">"Detecting Fighter Jets using Convolutional Neural Networks and Transfer Learning"</div>
+          <div class="pub-meta">IEEE Xplore · ICSCC 2023</div>
+        </div>
+        <a href="https://ieeexplore.ieee.org/document/10334976" class="lbtn" target="_blank" rel="noopener noreferrer" aria-label="Read IEEE paper">↗ IEEE Xplore</a>
+      </div>
+
+      <p class="sub-label fi">// Certifications</p>
+      <div class="cert-grid">
+        <div class="cert-card gold fi"><div class="cn">OCI 2025 AI Foundations Associate</div><div class="ci">Oracle Cloud Infrastructure</div></div>
+        <div class="cert-card gold fi"><div class="cn">OCI 2025 Generative AI Professional</div><div class="ci">Oracle Cloud Infrastructure</div></div>
+        <div class="cert-card blue fi"><div class="cn">ML Foundations: A Case Study Approach</div><div class="ci">Coursera / University of Washington</div></div>
+        <div class="cert-card blue fi"><div class="cn">AI Foundations for Everyone</div><div class="ci">Coursera</div></div>
+        <div class="cert-card blue fi"><div class="cn">Python for Everybody</div><div class="ci">Coursera</div></div>
+        <div class="cert-card blue fi"><div class="cn">Algorithms (Stanford)</div><div class="ci">Coursera</div></div>
+        <div class="cert-card orange fi"><div class="cn">Cybersecurity Foundation</div><div class="ci">Palo Alto Networks Academy · Nov 2021</div></div>
+        <div class="cert-card orange fi"><div class="cn">Network Security Fundamentals</div><div class="ci">Palo Alto Networks Academy</div></div>
+        <div class="cert-card orange fi"><div class="cn">Cloud Security Fundamentals</div><div class="ci">Palo Alto Networks Academy · Dec 2021</div></div>
+        <div class="cert-card orange fi"><div class="cn">Security Operations Fundamentals</div><div class="ci">Palo Alto Networks Academy · Dec 2021</div></div>
+        <div class="cert-card orange fi"><div class="cn">Cybersecurity Virtual Internship</div><div class="ci">Palo Alto Networks / EduSkills / AICTE · Oct–Dec 2021</div></div>
+        <div class="cert-card green fi"><div class="cn">R Programming</div><div class="ci">SoloLearn · Sep 2022</div></div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section id="contact" class="swrap">
+      <div class="sec-header fi">
+        <h2 class="sec-title">Let's Build Something Together</h2>
+        <p class="sec-sub">Open to AI/ML and Software Engineering opportunities. Visa sponsorship required.</p>
+        <div class="sec-bar"></div>
+      </div>
+
+      <div class="contact-layout">
+
+        <div class="fi">
+          <div class="cc-grid">
+            <a href="mailto:abrarullahm2001@gmail.com" class="cc" aria-label="Send email to Abrarullah">
+              <span class="cc-ico" aria-hidden="true">✉</span>
+              <div class="cc-lbl">Email</div>
+              <div class="cc-val">abrarullahm2001@gmail.com</div>
+            </a>
+            <a href="https://github.com/Abrar6801" class="cc" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile">
+              <span class="cc-ico" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+              </span>
+              <div class="cc-lbl">GitHub</div>
+              <div class="cc-val">github.com/Abrar6801</div>
+            </a>
+            <a href="https://www.linkedin.com/in/mohammed-abrarullah-92886a193" class="cc" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile">
+              <span class="cc-ico" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </span>
+              <div class="cc-lbl">LinkedIn</div>
+              <div class="cc-val">Connect on LinkedIn</div>
+            </a>
+            <div class="cc static-card" aria-label="Phone contact">
+              <span class="cc-ico" aria-hidden="true">📞</span>
+              <div class="cc-lbl">Phone</div>
+              <div class="cc-val">+1 909-600-4061</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cform fi" role="form" aria-label="Contact form">
+          <div class="cform-top">
+            <span class="wd wd-r" aria-hidden="true"></span>
+            <span class="wd wd-y" aria-hidden="true"></span>
+            <span class="wd wd-g" aria-hidden="true"></span>
+            &nbsp;contact.py
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="fName"><span class="kw">Name</span> <span class="kw"></span></label>
+            <input type="text" id="fName" class="fi-t" placeholder="Your name" autocomplete="name" maxlength="100">
+            <div class="ferr" id="eN">Name is required (max 100 characters).</div>
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="fEmail"><span class="kw">Email</span> <span class="kw"></span></label>
+            <input type="email" id="fEmail" class="fi-t" placeholder="your@email.com" autocomplete="email">
+            <div class="ferr" id="eE">Please enter a valid email address.</div>
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="fSubject"><span class="kw">Subject</span> <span class="kw"></span></label>
+            <input type="text" id="fSubject" class="fi-t" placeholder="What's this about?" maxlength="200">
+            <div class="ferr" id="eS">Subject is required (max 200 characters).</div>
+          </div>
+
+          <div class="fg">
+            <label class="fl" for="fMsg"><span class="kw">Message</span> <span class="kw"></span></label>
+            <textarea id="fMsg" class="fi-ta" placeholder="Your message..." maxlength="2000"></textarea>
+            <div class="ferr" id="eM">Message is required (max 2000 characters).</div>
+          </div>
+
+          <button type="button" id="fSend" class="fsub">Send</button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Abrarullah Mohammed.</p>
+  </footer>
+
+  <script src="script.js" defer></script>
+
+</body>
+</html>
