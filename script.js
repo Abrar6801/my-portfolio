@@ -12,10 +12,17 @@ document.documentElement.classList.add('js-loaded');
     if (pending) return;
     pending = true;
     requestAnimationFrame(function () {
-      cur.style.left = e.clientX + 'px';
-      cur.style.top  = e.clientY + 'px';
+      cur.style.left    = e.clientX + 'px';
+      cur.style.top     = e.clientY + 'px';
+      cur.style.opacity = '1';
       pending = false;
     });
+  });
+  document.addEventListener('mouseleave', function () {
+    cur.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', function () {
+    cur.style.opacity = '1';
   });
 }());
 

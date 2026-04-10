@@ -56,6 +56,8 @@ main, footer { position: relative; z-index: 1; }
   z-index: 9999;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 10px #00d4ff, 0 0 22px rgba(0,212,255,0.35);
+  transition: opacity 0.2s ease;
+  opacity: 0;
 }
 @media (hover: none) { #cursor { display: none; } }
 
