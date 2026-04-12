@@ -1,11 +1,13 @@
 <section id="skills">
   <div class="skills-inner">
+
     <div class="sec-header fi">
       <h2 class="sec-title">Technical Arsenal</h2>
       <p class="sec-sub">40+ Technologies</p>
       <div class="sec-bar"></div>
     </div>
 
+    <!-- Infinite carousel (unchanged) -->
     <div class="car-wrap fi" aria-hidden="true">
       <div class="car-row">
         <div class="car-track go-l" id="cr1"></div>
@@ -15,52 +17,195 @@
       </div>
     </div>
 
-    <div class="skill-grid">
-      <div class="skill-card fi">
-        <div class="sk-title">// Languages</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Python</span><span class="sk-tag">Java</span><span class="sk-tag">JavaScript</span>
-          <span class="sk-tag">TypeScript</span><span class="sk-tag">SQL</span><span class="sk-tag">R</span><span class="sk-tag">HTML/CSS</span>
+    <!-- Two-column: radar chart left, skill cards right -->
+    <div class="skills-layout">
+
+      <!-- Left: radar chart -->
+      <div class="skills-chart-col fi">
+        <div class="skills-chart-card">
+          <p class="skills-chart-title">Proficiency Overview</p>
+          <p class="skills-chart-hint">Hover each axis to see skills</p>
+          <div class="radar-svg-wrap">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Skill radar chart showing proficiency across 6 categories">
+              <!-- Concentric grid levels -->
+              <polygon points="200,168 228,184 228,216 200,232 172,216 172,184" fill="none" stroke="#e8e0d0" stroke-width="1"/>
+              <polygon points="200,136 255,168 255,232 200,264 145,232 145,168" fill="none" stroke="#e8e0d0" stroke-width="1"/>
+              <polygon points="200,104 283,152 283,248 200,296 117,248 117,152" fill="none" stroke="#e8e0d0" stroke-width="1"/>
+              <polygon points="200,72 311,136 311,264 200,328 89,264 89,136"   fill="none" stroke="#e8e0d0" stroke-width="1"/>
+              <polygon points="200,40 339,120 339,280 200,360 61,280 61,120"   fill="none" stroke="#e8e0d0" stroke-width="1"/>
+              <!-- Level labels -->
+              <text x="204" y="196" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8e0d0">2</text>
+              <text x="204" y="164" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8e0d0">4</text>
+              <text x="204" y="132" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8e0d0">6</text>
+              <text x="204" y="100" font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8e0d0">8</text>
+              <text x="204" y="68"  font-family="'IBM Plex Mono',monospace" font-size="8" fill="#e8e0d0">10</text>
+              <!-- Axis lines -->
+              <line x1="200" y1="200" x2="200" y2="40"  stroke="#d0c8b8" stroke-width="1"/>
+              <line x1="200" y1="200" x2="339" y2="120" stroke="#d0c8b8" stroke-width="1"/>
+              <line x1="200" y1="200" x2="339" y2="280" stroke="#d0c8b8" stroke-width="1"/>
+              <line x1="200" y1="200" x2="200" y2="360" stroke="#d0c8b8" stroke-width="1"/>
+              <line x1="200" y1="200" x2="61"  y2="280" stroke="#d0c8b8" stroke-width="1"/>
+              <line x1="200" y1="200" x2="61"  y2="120" stroke="#d0c8b8" stroke-width="1"/>
+              <!-- Data polygon (animated by JS) -->
+              <polygon id="radar-polygon"
+                points="200,200 200,200 200,200 200,200 200,200 200,200"
+                fill="rgba(200,105,10,0.12)"
+                stroke="#c8690a"
+                stroke-width="2.5"
+                stroke-linejoin="round"/>
+              <!-- Axis label hit areas + text -->
+              <text x="200" y="20" text-anchor="middle"
+                font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500"
+                fill="#1a1f3a" style="cursor:default"
+                data-radar-label="Languages"
+                data-radar-skills="Python · Java · JavaScript&#10;TypeScript · SQL · R · HTML/CSS">Languages</text>
+
+              <text x="362" y="114" text-anchor="start"
+                font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500"
+                fill="#1a1f3a" style="cursor:default"
+                data-radar-label="ML / AI"
+                data-radar-skills="PyTorch · TensorFlow · Keras&#10;scikit-learn · Hugging Face&#10;OpenAI API · CNNs · CodeBERT&#10;CodeT5 · VGG16 · NLP">ML / AI</text>
+
+              <text x="362" y="288" text-anchor="start"
+                font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500"
+                fill="#1a1f3a" style="cursor:default"
+                data-radar-label="Data Engineering"
+                data-radar-skills="PySpark · Pandas · NumPy&#10;PostgreSQL · MySQL&#10;Feature Engineering · ETL Pipelines">Data Eng</text>
+
+              <text x="200" y="392" text-anchor="middle"
+                font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500"
+                fill="#1a1f3a" style="cursor:default"
+                data-radar-label="Backend"
+                data-radar-skills="FastAPI · Flask · SQLAlchemy&#10;OAuth2 · REST APIs · Git · Agile">Backend</text>
+
+              <text x="38" y="288" text-anchor="end"
+                font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500"
+                fill="#1a1f3a" style="cursor:default"
+                data-radar-label="Frontend"
+                data-radar-skills="React.js · Bootstrap&#10;HTML/CSS · JavaScript">Frontend</text>
+
+              <text x="38" y="114" text-anchor="end"
+                font-family="'IBM Plex Mono',monospace" font-size="13" font-weight="500"
+                fill="#1a1f3a" style="cursor:default"
+                data-radar-label="Research"
+                data-radar-skills="Transformers · LLMs&#10;Model Evaluation · Explainable AI&#10;Distributed Processing · MLOps">Research</text>
+            </svg>
+          </div>
+        </div>
+        <!-- Tooltip -->
+        <div id="radar-tooltip" role="tooltip" aria-live="polite"></div>
+      </div>
+
+      <!-- Right: category skill cards -->
+      <div class="skills-cats-col fi">
+        <div class="skills-cats-grid">
+
+          <div class="sk-card">
+            <div class="sk-card-head">
+              <span class="sk-card-label">Languages</span>
+              <span class="sk-card-score">8 / 10</span>
+            </div>
+            <div class="sk-bar-wrap" aria-hidden="true"><div class="sk-bar" style="width:80%"></div></div>
+            <div class="sk-pills">
+              <span class="sk-pill">Python</span>
+              <span class="sk-pill">Java</span>
+              <span class="sk-pill">JavaScript</span>
+              <span class="sk-pill">TypeScript</span>
+              <span class="sk-pill">SQL</span>
+              <span class="sk-pill">R</span>
+              <span class="sk-pill">HTML / CSS</span>
+            </div>
+          </div>
+
+          <div class="sk-card sk-card--primary">
+            <div class="sk-card-head">
+              <span class="sk-card-label">ML / AI</span>
+              <span class="sk-card-score">9 / 10</span>
+            </div>
+            <div class="sk-bar-wrap" aria-hidden="true"><div class="sk-bar" style="width:90%"></div></div>
+            <div class="sk-pills">
+              <span class="sk-pill">PyTorch</span>
+              <span class="sk-pill">TensorFlow</span>
+              <span class="sk-pill">Keras</span>
+              <span class="sk-pill">scikit-learn</span>
+              <span class="sk-pill">Hugging Face</span>
+              <span class="sk-pill">OpenAI API</span>
+              <span class="sk-pill">CNNs</span>
+              <span class="sk-pill">CodeBERT</span>
+              <span class="sk-pill">VGG16</span>
+              <span class="sk-pill">NLP</span>
+            </div>
+          </div>
+
+          <div class="sk-card">
+            <div class="sk-card-head">
+              <span class="sk-card-label">Data Engineering</span>
+              <span class="sk-card-score">8 / 10</span>
+            </div>
+            <div class="sk-bar-wrap" aria-hidden="true"><div class="sk-bar" style="width:80%"></div></div>
+            <div class="sk-pills">
+              <span class="sk-pill">PySpark</span>
+              <span class="sk-pill">Pandas</span>
+              <span class="sk-pill">NumPy</span>
+              <span class="sk-pill">PostgreSQL</span>
+              <span class="sk-pill">MySQL</span>
+              <span class="sk-pill">ETL Pipelines</span>
+              <span class="sk-pill">Feature Eng.</span>
+            </div>
+          </div>
+
+          <div class="sk-card">
+            <div class="sk-card-head">
+              <span class="sk-card-label">Backend</span>
+              <span class="sk-card-score">7 / 10</span>
+            </div>
+            <div class="sk-bar-wrap" aria-hidden="true"><div class="sk-bar" style="width:70%"></div></div>
+            <div class="sk-pills">
+              <span class="sk-pill">FastAPI</span>
+              <span class="sk-pill">Flask</span>
+              <span class="sk-pill">SQLAlchemy</span>
+              <span class="sk-pill">OAuth2</span>
+              <span class="sk-pill">REST APIs</span>
+              <span class="sk-pill">Git</span>
+              <span class="sk-pill">Agile / Scrum</span>
+            </div>
+          </div>
+
+          <div class="sk-card">
+            <div class="sk-card-head">
+              <span class="sk-card-label">Frontend</span>
+              <span class="sk-card-score">6 / 10</span>
+            </div>
+            <div class="sk-bar-wrap" aria-hidden="true"><div class="sk-bar" style="width:60%"></div></div>
+            <div class="sk-pills">
+              <span class="sk-pill">React.js</span>
+              <span class="sk-pill">Bootstrap</span>
+              <span class="sk-pill">JavaScript</span>
+              <span class="sk-pill">HTML / CSS</span>
+              <span class="sk-pill">Matplotlib</span>
+              <span class="sk-pill">Seaborn</span>
+            </div>
+          </div>
+
+          <div class="sk-card">
+            <div class="sk-card-head">
+              <span class="sk-card-label">Research</span>
+              <span class="sk-card-score">8 / 10</span>
+            </div>
+            <div class="sk-bar-wrap" aria-hidden="true"><div class="sk-bar" style="width:80%"></div></div>
+            <div class="sk-pills">
+              <span class="sk-pill">Transformers</span>
+              <span class="sk-pill">LLMs</span>
+              <span class="sk-pill">Explainable AI</span>
+              <span class="sk-pill">Model Eval.</span>
+              <span class="sk-pill">MLOps</span>
+              <span class="sk-pill">Dist. Processing</span>
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="skill-card fi">
-        <div class="sk-title">// AI/ML Frameworks</div>
-        <div class="sk-tags">
-          <span class="sk-tag">PyTorch</span><span class="sk-tag">TensorFlow</span><span class="sk-tag">Keras</span>
-          <span class="sk-tag">scikit-learn</span><span class="sk-tag">Hugging Face</span><span class="sk-tag">OpenAI API</span>
-        </div>
-      </div>
-      <div class="skill-card fi">
-        <div class="sk-title">// Models &amp; Techniques</div>
-        <div class="sk-tags">
-          <span class="sk-tag">CNNs</span><span class="sk-tag">Transfer Learning</span><span class="sk-tag">NLP</span>
-          <span class="sk-tag">Computer Vision</span><span class="sk-tag">K-Means</span><span class="sk-tag">Time-Series</span>
-          <span class="sk-tag">CodeBERT</span><span class="sk-tag">CodeT5</span><span class="sk-tag">VGG16</span>
-        </div>
-      </div>
-      <div class="skill-card fi">
-        <div class="sk-title">// Data &amp; Big Data</div>
-        <div class="sk-tags">
-          <span class="sk-tag">PySpark</span><span class="sk-tag">Pandas</span><span class="sk-tag">NumPy</span>
-          <span class="sk-tag">PostgreSQL</span><span class="sk-tag">MySQL</span><span class="sk-tag">Feature Engineering</span>
-          <span class="sk-tag">ETL Pipelines</span>
-        </div>
-      </div>
-      <div class="skill-card fi">
-        <div class="sk-title">// Tools &amp; Platforms</div>
-        <div class="sk-tags">
-          <span class="sk-tag">FastAPI</span><span class="sk-tag">Flask</span><span class="sk-tag">React.js</span>
-          <span class="sk-tag">Git</span><span class="sk-tag">Matplotlib</span><span class="sk-tag">Seaborn</span>
-          <span class="sk-tag">Agile/Scrum</span>
-        </div>
-      </div>
-      <div class="skill-card fi">
-        <div class="sk-title">// Concepts</div>
-        <div class="sk-tags">
-          <span class="sk-tag">Transformers</span><span class="sk-tag">LLMs</span><span class="sk-tag">Model Evaluation</span>
-          <span class="sk-tag">Explainable AI</span><span class="sk-tag">Distributed Processing</span><span class="sk-tag">MLOps</span>
-        </div>
-      </div>
-    </div>
+    </div><!-- /.skills-layout -->
+
   </div>
 </section>

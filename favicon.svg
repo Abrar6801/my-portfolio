@@ -3,10 +3,10 @@
     x="32"
     y="43"
     text-anchor="middle"
-    font-family="'JetBrains Mono', 'Courier New', monospace"
+    font-family="'IBM Plex Mono', 'Courier New', monospace"
     font-weight="700"
-    font-size="32"
-    letter-spacing="1"
-    fill="#00d4ff"
+    font-size="35"
+    letter-spacing="1.4"
+    fill="#c8690a"
   >AM_</text>
 </svg>

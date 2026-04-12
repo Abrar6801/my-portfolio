@@ -67,6 +67,7 @@ mobileMenu.querySelectorAll('a').forEach(function (a) {
 var sectionMap = [
   { id: 'sec-hero',         file: 'sections/hero.html' },
   { id: 'sec-skills',       file: 'sections/skills.html' },
+  { id: 'sec-philosophy',   file: 'sections/philosophy.html' },
   { id: 'sec-experience',   file: 'sections/experience.html' },
   { id: 'sec-projects',     file: 'sections/projects.html' },
   { id: 'sec-education',    file: 'sections/education.html' },
@@ -86,7 +87,7 @@ function initSections() {
 
   /* ===== ACTIVE NAV via IntersectionObserver ===== */
   var navAnchors = document.querySelectorAll('.nav-links a[data-sec]');
-  var secIds = ['about','skills','experience','projects','education','publications','contact'];
+  var secIds = ['about','skills','philosophy','experience','projects','education','publications','contact'];
   var navObs = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
@@ -106,6 +107,7 @@ function initSections() {
     var offset = 0;
     words.forEach(function (word, wi) {
       var el = document.getElementById('heroWord' + (wi + 1));
+      if (!el) return;
       word.split('').forEach(function (ch) {
         var span = document.createElement('span');
         span.classList.add('nl');
@@ -117,41 +119,24 @@ function initSections() {
     });
   }());
 
-  /* ===== TYPEWRITER ===== */
-  (function () {
-    var phrases = [
-      'NLP Engineer',
-      'AI/ML Developer',
-      'Full-Stack Engineer',
-      'Computer Vision Researcher'
-    ];
-    var textEl  = document.getElementById('twText');
-    var idx = 0, charIdx = 0, deleting = false;
-    function tick() {
-      var phrase = phrases[idx];
-      if (!deleting) {
-        charIdx++;
-        textEl.textContent = phrase.slice(0, charIdx);
-        if (charIdx === phrase.length) { deleting = true; setTimeout(tick, 1800); return; }
-      } else {
-        charIdx--;
-        textEl.textContent = phrase.slice(0, charIdx);
-        if (charIdx === 0) { deleting = false; idx = (idx + 1) % phrases.length; setTimeout(tick, 350); return; }
-      }
-      setTimeout(tick, deleting ? 55 : 95);
-    }
-    setTimeout(tick, 900);
-  }());
+  /* ===== TYPEWRITER (no-op — replaced with static subtitle in HTML) ===== */
+  /* The typewriter cycling animation has been replaced with a static .hero-static-sub element.
+     The twText element no longer exists in the DOM; this block is intentionally left empty
+     to preserve the code structure while removing the cycling animation. */
 
   /* ===== OPEN TO WORK DISMISS ===== */
-  document.getElementById('otwX').addEventListener('click', function () {
-    document.getElementById('otwBadge').style.display = 'none';
-  });
+  var otwX = document.getElementById('otwX');
+  if (otwX) {
+    otwX.addEventListener('click', function () {
+      document.getElementById('otwBadge').style.display = 'none';
+    });
+  }
 
   /* ===== RESUME DROPDOWN ===== */
   (function () {
     var btn  = document.getElementById('resumeBtn');
     var drop = document.getElementById('resumeDrop');
+    if (!btn || !drop) return;
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       drop.classList.toggle('open');
@@ -224,7 +209,9 @@ function initSections() {
       var el = document.getElementById(id);
       if (el) el.classList.toggle('show', show);
     }
-    document.getElementById('fSend').addEventListener('click', function () {
+    var fSend = document.getElementById('fSend');
+    if (!fSend) return;
+    fSend.addEventListener('click', function () {
       var name    = sanitize(document.getElementById('fName').value);
       var email   = sanitize(document.getElementById('fEmail').value);
       var subject = sanitize(document.getElementById('fSubject').value);
@@ -242,4 +229,182 @@ function initSections() {
         '&body='    + encodeURIComponent(body);
     });
   }());
+
+  /* ===== NEURAL CANVAS ===== */
+  (function () {
+    var canvas = document.getElementById('neural-canvas');
+    if (!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var nodes = [];
+    var NODE_COUNT = 35;
+    var MAX_DIST   = 120;
+    var animId;
+
+    function resizeCanvas() {
+      canvas.width  = canvas.offsetWidth  || canvas.parentElement.offsetWidth;
+      canvas.height = canvas.offsetHeight || canvas.parentElement.offsetHeight;
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < NODE_COUNT; i++) {
+        nodes.push({
+          x:  Math.random() * canvas.width,
+          y:  Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4
+        });
+      }
+    }
+
+    function drawFrame() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var i, j, n, dx, dy, dist, alpha;
+
+      /* Update positions */
+      for (i = 0; i < nodes.length; i++) {
+        n = nodes[i];
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0)             { n.x = 0;             n.vx *= -1; }
+        if (n.x > canvas.width)  { n.x = canvas.width;  n.vx *= -1; }
+        if (n.y < 0)             { n.y = 0;             n.vy *= -1; }
+        if (n.y > canvas.height) { n.y = canvas.height; n.vy *= -1; }
+      }
+
+      /* Draw edges */
+      ctx.lineWidth = 0.5;
+      for (i = 0; i < nodes.length; i++) {
+        for (j = i + 1; j < nodes.length; j++) {
+          dx   = nodes[i].x - nodes[j].x;
+          dy   = nodes[i].y - nodes[j].y;
+          dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < MAX_DIST) {
+            alpha = (1 - dist / MAX_DIST) * 0.6;
+            ctx.strokeStyle = 'rgba(200,105,10,' + alpha + ')';
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      /* Draw nodes */
+      ctx.fillStyle = '#1a1f3a';
+      for (i = 0; i < nodes.length; i++) {
+        ctx.beginPath();
+        ctx.arc(nodes[i].x, nodes[i].y, 2, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      animId = requestAnimationFrame(drawFrame);
+    }
+
+    var resizePend = false;
+    window.addEventListener('resize', function () {
+      if (resizePend) return;
+      resizePend = true;
+      requestAnimationFrame(function () {
+        resizeCanvas();
+        resizePend = false;
+      });
+    });
+
+    resizeCanvas();
+    initNodes();
+    drawFrame();
+  }());
+
+  /* ===== RADAR CHART ANIMATION ===== */
+  (function () {
+    var polygon = document.getElementById('radar-polygon');
+    if (!polygon) return;
+
+    var finalPts = [
+      { x: 200, y: 72  },  /* Languages: 8/10 × 160 = 128 */
+      { x: 325, y: 128 },  /* ML/AI: 9/10 × 160 = 144 */
+      { x: 311, y: 264 },  /* Data Engineering: 8/10 × 160 = 128 */
+      { x: 200, y: 312 },  /* Backend: 7/10 × 160 = 112 */
+      { x: 117, y: 248 },  /* Frontend: 6/10 × 160 = 96 */
+      { x: 89,  y: 136 }   /* Research: 8/10 × 160 = 128 */
+    ];
+    var centerPts = finalPts.map(function () { return { x: 200, y: 200 }; });
+
+    var startTime = null;
+    var DURATION  = 1200;
+    var fired     = false;
+
+    function animatePolygon(ts) {
+      if (!startTime) startTime = ts;
+      var t    = Math.min((ts - startTime) / DURATION, 1);
+      var ease = 1 - Math.pow(1 - t, 3);
+      var pts  = finalPts.map(function (fp, i) {
+        var sx = centerPts[i].x;
+        var sy = centerPts[i].y;
+        return (sx + (fp.x - sx) * ease) + ',' + (sy + (fp.y - sy) * ease);
+      }).join(' ');
+      polygon.setAttribute('points', pts);
+      if (t < 1) requestAnimationFrame(animatePolygon);
+    }
+
+    var skillsSection = document.getElementById('skills');
+    if (!skillsSection) {
+      requestAnimationFrame(animatePolygon);
+      return;
+    }
+
+    var radarObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting || fired) return;
+        fired = true;
+        radarObs.unobserve(entry.target);
+        requestAnimationFrame(animatePolygon);
+      });
+    }, { threshold: 0.2 });
+    radarObs.observe(skillsSection);
+  }());
+
+  /* ===== RADAR TOOLTIPS ===== */
+  (function () {
+    var tooltip = document.getElementById('radar-tooltip');
+    if (!tooltip) return;
+
+    document.querySelectorAll('[data-radar-label]').forEach(function (el) {
+      el.addEventListener('mouseenter', function (e) {
+        tooltip.textContent = el.getAttribute('data-radar-skills');
+        tooltip.style.display = 'block';
+        tooltip.style.left    = (e.clientX + 12) + 'px';
+        tooltip.style.top     = (e.clientY + 12) + 'px';
+      });
+      el.addEventListener('mousemove', function (e) {
+        tooltip.style.left = (e.clientX + 12) + 'px';
+        tooltip.style.top  = (e.clientY + 12) + 'px';
+      });
+      el.addEventListener('mouseleave', function () {
+        tooltip.style.display = 'none';
+      });
+    });
+  }());
+
+  /* ===== PHILOSOPHY CARD STAGGER ===== */
+  (function () {
+    var cards  = document.querySelectorAll('.philosophy-card');
+    if (!cards.length) return;
+    var delays = [0, 150, 300];
+
+    var philObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        philObs.unobserve(entry.target);
+        entry.target.classList.add('phil-on');
+      });
+    }, { threshold: 0.08 });
+
+    cards.forEach(function (card, i) {
+      card.style.transitionDelay = delays[i] + 'ms';
+      philObs.observe(card);
+    });
+  }());
+
 }
