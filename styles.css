@@ -875,6 +875,7 @@ main, footer { position: relative; z-index: 1; }
 }
 .js-loaded .lbtn { cursor: none; }
 .lbtn:hover { background: #c8690a; color: #ffffff; border-color: #c8690a; }
+.ptop-links { display: flex; gap: 0.5rem; flex-shrink: 0; }
 
 .tech-row { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-bottom: 1rem; }
 .tp {
