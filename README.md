@@ -1,105 +1,90 @@
-# Abrarullah Mohammed — Personal Portfolio
+# CASE FILE №2026-AM — Abrarullah Mohammed
 
-A personal portfolio website for Abrarullah Mohammed, AI/ML-focused Software Engineer. Built with vanilla HTML, CSS, and JavaScript — no frameworks, no build tools, no dependencies.
+Personal portfolio of Abrarullah Mohammed, AI/ML Engineer (LLM & RAG systems),
+designed as a detective's **evidence board**: corkboard, index cards, polaroids,
+red string, rubber stamps — the visitor works the case. Built with vanilla HTML,
+CSS, and JavaScript. No frameworks, no build step, zero npm dependencies.
 
-**Live site:** [your-vercel-url.vercel.app](https://your-vercel-url.vercel.app)
+**Live site:** deployed on Vercel (auto-deploys from `main`).
+
+The full design/architecture plan lives in
+[`EVIDENCE_BOARD_REDESIGN.md`](EVIDENCE_BOARD_REDESIGN.md).
 
 ---
 
 ## Features
 
-- Letter-by-letter hero name animation
-- Typewriter role rotator
-- Infinite scrolling skill carousel
-- Animated metric counters
-- Fade-in scroll animations via IntersectionObserver
-- Resume dropdown with separate Software Engineer and AI/ML resumes
-- Working contact form (mailto)
-- Custom cursor that disappears when leaving the page
-- Fully responsive — mobile, tablet, desktop
-- Custom SVG favicon
-- Content Security Policy headers
+- Evidence-board theme: pinned index cards, polaroid photo, sticky notes,
+  evidence tags, rubber-stamp scroll animations, a red-string layer connecting
+  every section, coffee stains, and a magnifying-glass cursor
+- **View Clean File** toggle — flat, printable, recruiter-friendly mode
+  (persisted in localStorage)
+- Content rendered from `content.json` — edit the JSON, redeploy, done;
+  optionally served live from Supabase (see below)
+- Capability radar chart + carousels focused on the LLM/RAG stack
+  (RAG, LangChain, LlamaIndex, LangGraph, embeddings, vector search)
+- Case timer footer, `whodunit` easter egg, reduced-motion support
+- Strict Content-Security-Policy; all dynamic content rendered via
+  `textContent` (no innerHTML with fetched data)
 
 ---
 
-## Tech Stack
-
-| Layer | Choice |
-|---|---|
-| Markup | HTML5 |
-| Styling | CSS3 (custom properties, grid, flexbox, animations) |
-| Scripting | Vanilla JavaScript (ES5-compatible) |
-| Fonts | Syne + JetBrains Mono via Google Fonts |
-| Hosting | Vercel |
-
----
-
-## Project Structure
+## Architecture
 
 ```
 my-portfolio/
-├── index.html              # Shell — navbar, footer, section placeholders
-├── styles.css              # All styles
-├── script.js               # Fetches sections, then initialises all features
-├── favicon.svg             # SVG favicon (AM_ in accent colour)
-├── photo.jpg               # Profile photo
-├── resume-swe.pdf          # Software Engineer resume
-├── resume-aiml.pdf         # AI / ML Engineer resume
-└── sections/               # Section HTML fragments (loaded via fetch)
-    ├── hero.html
-    ├── skills.html
-    ├── experience.html
-    ├── projects.html
-    ├── education.html
-    ├── publications.html
-    └── contact.html
+├── index.html                  # Static shell — nav, footer, section mounts
+├── styles.css                  # Design system (materials, sections, clean mode)
+├── script.js                   # Content loader + DOM renderers + interactions
+├── config.js                   # Supabase URL + anon key (empty = snapshot only)
+├── content.json                # All site content (the snapshot / source of truth)
+├── favicon.svg                 # Pushpin favicon
+├── photo.jpg / resume-*.pdf    # Assets
+├── supabase/schema.sql         # content table + RLS policies (run in SQL editor)
+├── scripts/seed_supabase.py    # Seed/re-sync the database from content.json
+└── .github/workflows/
+    ├── keepalive.yml           # Pings Supabase every 2 days (free tier never pauses)
+    └── snapshot.yml            # Nightly: regenerate content.json from the DB
 ```
 
-Sections are kept in separate files and injected at runtime by `script.js` using `Promise.all` + `fetch`. This keeps `index.html` clean and each section independently editable.
+**Content flow:** the site always renders instantly from `content.json`.
+If `config.js` contains Supabase credentials, live data is fetched from the
+`content` table (public read via Row Level Security; writes require the single
+owner account) and used when it answers within 2.5s — otherwise the snapshot
+wins. The nightly snapshot workflow keeps `content.json` at most 24h behind
+the database, which also makes git the content backup.
+
+### Editing content
+
+- **Without Supabase:** edit `content.json` (even in the GitHub web editor),
+  push — Vercel redeploys in about a minute.
+- **With Supabase:** update rows in the `content` table (Phase 3 adds an
+  in-theme admin panel, "The War Room").
+
+### Enabling Supabase
+
+1. Create a free project at supabase.com; run `supabase/schema.sql` in the
+   SQL editor (paste your auth user UUID into the owner policy).
+2. Disable sign-ups, create your single user, enable MFA.
+3. `python scripts/seed_supabase.py https://YOUR-REF.supabase.co SERVICE_ROLE_KEY`
+4. Put the project URL + anon key in `config.js`, and add the project origin
+   to `connect-src` in the CSP in `index.html`.
+5. Add repo secrets `SUPABASE_URL` / `SUPABASE_ANON_KEY` and repo variable
+   `SUPABASE_ENABLED=true` so the keep-alive and snapshot workflows run.
 
 ---
 
-## Running Locally
+## Running locally
 
-You need an HTTP server — `fetch()` does not work over `file://`.
+Any static server works (`fetch()` needs HTTP, not `file://`):
 
-**Python:**
 ```bash
 python -m http.server 8080
-```
-
-**Node.js:**
-```bash
+# or
 npx serve .
 ```
 
-Then open `http://localhost:8080` in your browser.
-
----
-
-## Deployment
-
-The site is deployed on **Vercel** and auto-deploys on every push to `main`.
-
-```bash
-git add .
-git commit -m "your message"
-git push
-```
-
----
-
-## Sections
-
-| Section | File |
-|---|---|
-| Hero / About | `sections/hero.html` |
-| Skills | `sections/skills.html` |
-| Experience | `sections/experience.html` |
-| Projects | `sections/projects.html` |
-| Education | `sections/education.html` |
-| Publications & Certifications | `sections/publications.html` |
-| Contact | `sections/contact.html` |
+Then open http://localhost:8080.
 
 ---
 

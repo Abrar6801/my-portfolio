@@ -1,0 +1,59 @@
+# Nightly: regenerate content.json from the live Supabase database and
+# commit it if anything changed. This keeps the snapshot-first render
+# (and SEO) at most 24h stale, and doubles as a content backup in git.
+#
+# Requires the same secrets as keepalive.yml, plus the repository
+# variable SUPABASE_ENABLED=true to switch it on.
+name: Refresh content snapshot
+
+on:
+  schedule:
+    - cron: '43 7 * * *'   # daily at 07:43 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    if: ${{ vars.SUPABASE_ENABLED == 'true' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch content from Supabase
+        run: |
+          curl --fail --silent --show-error \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_ANON_KEY }}" \
+            "${{ secrets.SUPABASE_URL }}/rest/v1/content?select=key,data" \
+            -o rows.json
+
+      - name: Rebuild content.json
+        run: |
+          python3 - <<'EOF'
+          import json
+          rows = json.load(open("rows.json"))
+          if not rows:
+              raise SystemExit("Refusing to write an empty snapshot")
+          content = {row["key"]: row["data"] for row in rows}
+          for required in ("profile", "projects", "skills"):
+              if required not in content:
+                  raise SystemExit(f"Missing section: {required}")
+          with open("content.json", "w", encoding="utf-8") as f:
+              json.dump(content, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+          EOF
+          rm rows.json
+
+      - name: Commit if changed
+        run: |
+          git config user.name "snapshot-bot"
+          git config user.email "actions@github.com"
+          if ! git diff --quiet content.json; then
+            git add content.json
+            git commit -m "chore: refresh content snapshot from Supabase"
+            git push
+          else
+            echo "Snapshot already up to date."
+          fi

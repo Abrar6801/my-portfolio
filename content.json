@@ -1,0 +1,315 @@
+{
+  "profile": {
+    "statement": "“From aerial imagery to retrieval pipelines — the subject builds systems that think.”",
+    "name": ["Abrarullah", "Mohammed"],
+    "occupation": "Occupation: AI/ML Engineer — LLM & RAG Systems",
+    "badge": "IEEE Published · ICSCC 2023 · Computer Vision",
+    "dossier": [
+      { "label": "Last Known Location", "value": "Fullerton, CA" },
+      { "label": "Known Channel", "value": "abrarullahm2001@gmail.com" },
+      { "label": "Available for Duty", "value": "May 2026" },
+      { "label": "Special Condition", "value": "Requires H-1B sponsorship" }
+    ],
+    "bio": "IEEE-published CNN research. Production FastAPI / PyTorch systems. 14K-record PySpark pipelines. Currently building retrieval-augmented generation systems with LangChain, LlamaIndex & LangGraph. MS Computer Science, Cal State Fullerton — seeking full-time AI/ML engineering roles.",
+    "modusOperandi": "Ingests unstructured documents. Chunks, embeds & indexes them. Retrieves exactly what matters — and makes language models tell the truth about it.",
+    "photo": {
+      "src": "photo.jpg",
+      "alt": "Portrait of Abrarullah Mohammed, AI/ML Engineer",
+      "caption": "The Subject — last seen shipping an LLM pipeline to production."
+    },
+    "resumes": [
+      { "label": "→ Software Engineer copy", "href": "resume-swe.pdf" },
+      { "label": "→ AI / ML Engineer copy", "href": "resume-aiml.pdf" }
+    ],
+    "socials": [
+      { "type": "github", "href": "https://github.com/Abrar6801", "aria": "GitHub profile" },
+      { "type": "linkedin", "href": "https://www.linkedin.com/in/mohammed-abrarullah-92886a193", "aria": "LinkedIn profile" }
+    ],
+    "openToWork": true
+  },
+
+  "sections": {
+    "skills":       { "tab": "Known Capabilities", "stamp": "Assessed", "note": "Capability assessment of the subject — compiled from recovered repositories and field observation." },
+    "philosophy":   { "tab": "Psychological Profile", "stamp": "Eyes Only", "note": "Analyst notes on how the subject operates. Statements recovered verbatim." },
+    "experience":   { "tab": "Surveillance Log", "stamp": "Confirmed", "note": "Known whereabouts and confirmed professional activity of the subject." },
+    "projects":     { "tab": "Exhibits — Physical Evidence", "stamp": "Logged", "note": "Recovered works, tagged and bagged. AI/ML evidence filed first." },
+    "education":    { "tab": "Background Check", "stamp": "Verified", "note": "Official records pulled from the education registry. All documents authenticated." },
+    "publications": { "tab": "Published Findings", "stamp": "On Record", "note": "Clippings and credentials recovered from public archives." },
+    "contact":      { "tab": "Tip Line", "stamp": "Case Open", "note": "Have information about this subject? The department is accepting tips regarding full-time AI/ML engineering roles. H-1B sponsorship required." }
+  },
+
+  "skills": {
+    "carouselLabel": "Primary Toolkit — GenAI / ML  ·  Supporting Toolkit",
+    "carousel": {
+      "row1": ["RAG", "LangChain", "LlamaIndex", "LangGraph", "Prompt Engineering", "Embeddings", "Vector Search", "Document Loaders", "Chunking Strategies", "Hugging Face", "PyTorch", "TensorFlow", "OpenAI API"],
+      "row2": ["Python", "FastAPI", "Flask", "PySpark", "PostgreSQL", "SQL", "scikit-learn", "Pandas", "NumPy", "OpenCV", "Git", "GitHub", "React.js", "Agile/Scrum"]
+    },
+    "radar": {
+      "title": "Capability Assessment",
+      "hint": "Hover each axis to see the evidence",
+      "stamp": "Lab Use Only",
+      "axes": [
+        { "label": "LLM / GenAI", "tip": "LLM & GenAI", "skills": "RAG · LangChain · LlamaIndex\nLangGraph · Prompt Engineering\nOpenAI API · Hugging Face", "score": 7 },
+        { "label": "Deep Learning", "tip": "Deep Learning", "skills": "PyTorch · TensorFlow · Keras\nCNNs · Transformers · CodeBERT\nVGG16 · NLP", "score": 9 },
+        { "label": "Data / Retrieval", "tip": "Data & Retrieval", "skills": "Document Loaders · Chunking\nEmbeddings · Vector Search\nPySpark · PostgreSQL · ETL", "score": 8 },
+        { "label": "Software Eng", "tip": "Software Engineering", "skills": "Python · Java · FastAPI · Flask\nREST APIs · OAuth2 · React.js\nGit · GitHub · Agile", "score": 7 },
+        { "label": "Classical ML", "tip": "Classical ML", "skills": "scikit-learn · K-Means · Forecasting\nOpenCV · Pandas · NumPy\nFeature Engineering", "score": 8 },
+        { "label": "Research", "tip": "Research", "skills": "IEEE Publication · Explainable AI\nModel Evaluation · Experimentation\nTechnical Writing", "score": 8 }
+      ]
+    },
+    "cards": [
+      { "label": "LLM & GenAI Systems", "score": 7, "primary": true, "pills": ["RAG", "LangChain", "LlamaIndex", "LangGraph", "Prompt Engineering", "OpenAI API", "Hugging Face"] },
+      { "label": "Deep Learning", "score": 9, "pills": ["PyTorch", "TensorFlow", "Keras", "CNNs", "Transformers", "CodeBERT", "VGG16", "NLP"] },
+      { "label": "Data & Retrieval Eng.", "score": 8, "pills": ["Document Loaders", "Chunking", "Embeddings", "Vector Search", "PySpark", "PostgreSQL", "ETL Pipelines"] },
+      { "label": "Classical ML", "score": 8, "pills": ["scikit-learn", "K-Means", "Forecasting", "OpenCV", "Pandas", "NumPy", "Feature Eng."] },
+      { "label": "Software Engineering", "score": 7, "pills": ["Python", "Java", "FastAPI", "Flask", "REST APIs", "React.js", "Git / GitHub", "Agile / Scrum"] },
+      { "label": "Research", "score": 8, "pills": ["IEEE Publication", "Explainable AI", "Model Evaluation", "Experimentation", "Technical Writing"] }
+    ],
+    "methodologyLabel": "Retrieval Methodology — how the subject processes evidence",
+    "methodology": [
+      { "title": "Intake", "tech": "Document Loaders", "note": "Every source gets logged — PDFs, pages, records." },
+      { "title": "Dissection", "tech": "Chunking", "note": "Documents cut into pieces small enough to pin down." },
+      { "title": "Indexing", "tech": "Embeddings → Vector Store", "note": "Each piece filed by meaning, not by keyword." },
+      { "title": "Retrieval", "tech": "Similarity Search", "note": "Pull only the evidence that matters to the question." },
+      { "title": "Testimony", "tech": "Prompt-Engineered Generation", "note": "The model answers — grounded, cited, on the record." }
+    ],
+    "analystNote": "“Subject has recently expanded operations into retrieval-augmented generation. Connections multiplying. Recommend immediate recruitment before a competing agency finds this board.” — Analyst"
+  },
+
+  "philosophy": [
+    { "number": "01", "title": "“I start with the data”", "body": "Every system I build begins with exploratory analysis — understanding distributions, finding anomalies, and letting the data reveal its structure before writing a single model. Whether it is 14,000 e-commerce records or aerial jet imagery, the data always has something to say first." },
+    { "number": "02", "title": "“I ship explainable systems”", "body": "Black-box ML has limited production value. In AIReviewHub I built a confidence scoring and reasoning trace layer so developers could trust and verify every suggestion. Explainability is not a feature — it is the foundation of adoption." },
+    { "number": "03", "title": "“I bridge research and product”", "body": "My IEEE-published CNN research did not stop at 94% accuracy on paper. I applied the same transfer learning and preprocessing principles to build deployable, optimized systems. Research only matters when it runs in production." }
+  ],
+
+  "experience": [
+    {
+      "role": "Software Engineering Intern",
+      "company": "Ennea Solutions",
+      "dates": "Dec 2022 – Feb 2023",
+      "location": "Telangana, India",
+      "status": "Confirmed",
+      "bullets": [
+        "Reduced recurring API errors by 30% by debugging Python backend services, refactoring SQL queries, and implementing validation layers",
+        "Accelerated feature delivery by 20% by collaborating in Agile sprints, translating requirements into REST endpoints, and participating in code reviews",
+        "Increased maintainability of legacy modules by writing unit tests and restructuring tightly coupled components, reducing post-release incidents",
+        "Resolved critical production issues within SLA through root-cause analysis using application logs and version control history"
+      ]
+    },
+    {
+      "role": "Community Service Officer",
+      "company": "CSUF Police Department",
+      "dates": "Jul 2024 – Jan 2026",
+      "location": "Fullerton, CA",
+      "status": "Confirmed",
+      "bullets": [
+        "Maintained reliable on-call availability and consistently met scheduling commitments in a high-accountability, safety-critical environment",
+        "Communicated clearly with a diverse campus population — students, faculty, and staff — under time pressure and in stressful situations",
+        "Followed strict institutional protocols (emergency radio codes, incident documentation, escalation procedures) with zero margin for error"
+      ]
+    }
+  ],
+
+  "projects": {
+    "major": [
+      {
+        "exhibit": "A",
+        "caseNo": "№2026-AM-P01",
+        "tagExtra": "IEEE Verified",
+        "classification": "Computer Vision",
+        "title": "Fighter Jet Detection using CNN and Transfer Learning",
+        "links": [
+          { "label": "Inspect Evidence ↗", "href": "https://ieeexplore.ieee.org/document/10334976", "aria": "IEEE paper on IEEEXplore" }
+        ],
+        "tech": ["Python", "TensorFlow", "Keras", "VGG16", "OpenCV"],
+        "description": "Convolutional neural network trained on aerial imagery achieving 94% detection accuracy across varied lighting and angles. Model quantization and batch optimization reduced inference time. Preprocessing pipeline to reduce noise. Published and presented at IEEE ICSCC 2023.",
+        "metrics": [
+          { "value": 94, "suffix": "%", "label": "Detection Accuracy" },
+          { "value": 40, "suffix": "%", "label": "Faster Inference" },
+          { "value": 30, "suffix": "%", "label": "Noise Reduction" },
+          { "static": "IEEE", "label": "ICSCC Published" }
+        ],
+        "visual": "jet-confusion",
+        "visualAria": "Confusion matrix: TP 94, FP 6, FN 4, TN 96"
+      },
+      {
+        "exhibit": "B",
+        "caseNo": "№2026-AM-P02",
+        "classification": "NLP / Code Intelligence",
+        "title": "AIReviewHub — Code Review Automation Platform",
+        "links": [
+          { "label": "Source of Evidence ↗", "href": "https://github.com/Abrar6801/AIReviewHub", "aria": "AIReviewHub on GitHub" }
+        ],
+        "tech": ["Python", "PyTorch", "CodeBERT", "CodeT5", "scikit-learn", "FastAPI"],
+        "description": "AI-powered code review system analyzing 1,000+ code snippets using CodeBERT embeddings and static analysis. Generates automated suggestions for code complexity, security vulnerabilities, and maintainability. Features an explainable AI layer with confidence scoring and reasoning traces.",
+        "metrics": [
+          { "value": 35, "suffix": "%", "label": "Better Accuracy" },
+          { "value": 60, "suffix": "%", "label": "Less Manual Review" },
+          { "value": 90, "suffix": "%+", "label": "F1 Score" },
+          { "value": 40, "suffix": "%", "label": "Dev Acceptance" }
+        ],
+        "visual": "review-performance",
+        "visualAria": "Model performance: Precision 88%, Recall 91%, F1 90%"
+      },
+      {
+        "exhibit": "C",
+        "caseNo": "№2026-AM-P03",
+        "classification": "Big Data / Machine Learning",
+        "title": "E-Commerce Big Data Analytics Platform",
+        "links": [],
+        "tech": ["Python", "PySpark", "PostgreSQL", "Flask", "React", "MLlib"],
+        "description": "Distributed ETL pipeline ingesting 3 CSV datasets into PostgreSQL, processing 14,000+ records with PySpark. K-Means customer segmentation with 92% clustering coherence. Exponential smoothing time-series forecasting. 7 REST APIs and a React dashboard for real-time business intelligence.",
+        "metrics": [
+          { "value": 14000, "suffix": "+", "label": "Records Processed" },
+          { "value": 90, "suffix": "%", "label": "Time Reduction" },
+          { "value": 92, "suffix": "%", "label": "Cluster Coherence" },
+          { "value": 85, "suffix": "%", "label": "Forecast Accuracy" }
+        ],
+        "visual": "revenue-forecast",
+        "visualAria": "Revenue forecast trend sparkline"
+      },
+      {
+        "exhibit": "D",
+        "caseNo": "№2026-AM-P04",
+        "classification": "Full-Stack / AI Integration",
+        "title": "Task Manager — Full-Stack Web Application",
+        "links": [
+          { "label": "Source of Evidence ↗", "href": "https://github.com/Abrar6801/Task-manager---Web-application", "aria": "Task Manager on GitHub" }
+        ],
+        "tech": ["Python", "Flask", "SQLAlchemy", "OAuth2", "OpenAI API", "Bootstrap"],
+        "description": "Multi-user task management platform with full CRUD operations, Google OAuth SSO, session-based authentication, and role-based admin portal. Integrated OpenAI GPT-4o-mini to generate AI-powered daily schedules based on user role and goals.",
+        "metrics": [
+          { "static": "Full", "label": "CRUD" },
+          { "static": "Google", "label": "SSO Auth" },
+          { "static": "GPT-4o", "label": "AI Scheduling" },
+          { "value": 6, "suffix": "", "label": "HTML Templates" }
+        ],
+        "visual": "task-architecture",
+        "visualAria": "Architecture flow: User Auth → CRUD Tasks → AI Schedule"
+      },
+      {
+        "exhibit": "E",
+        "caseNo": "№2026-AM-P05",
+        "classification": "Full-Stack / Real-time Collaboration",
+        "title": "Paperly — Collaborative Document Editor",
+        "links": [
+          { "label": "Inspect Evidence ↗", "href": "https://paperly-hazel.vercel.app/", "aria": "Paperly live demo" },
+          { "label": "Source ↗", "href": "https://github.com/Abrar6801/Paperly", "aria": "Paperly on GitHub" }
+        ],
+        "tech": ["Next.js", "TypeScript", "Convex", "Liveblocks", "Tiptap", "Clerk"],
+        "description": "Real-time collaborative document editor with live multi-user cursor presence powered by Liveblocks and a reactive Convex backend. Rich text editing via Tiptap with 18+ extensions including tables, images, mentions, task lists, and colour themes. Clerk handles authentication.",
+        "metrics": [
+          { "static": "Live", "label": "Multi-user Cursors" },
+          { "value": 18, "suffix": "+", "label": "Editor Extensions" },
+          { "static": "Clerk", "label": "Auth Provider" },
+          { "static": "Convex", "label": "Real-time Backend" }
+        ],
+        "visual": "paperly-architecture",
+        "visualAria": "Architecture: Clerk Auth → Tiptap Editor → Liveblocks real-time sync"
+      },
+      {
+        "exhibit": "F",
+        "caseNo": "№2026-AM-P06",
+        "classification": "Blockchain / Ethereum",
+        "title": "On-Chain Voting DApp",
+        "links": [
+          { "label": "Source of Evidence ↗", "href": "https://github.com/MYASHWANTHREDDY/On-chain-voting-dapp", "aria": "On-Chain Voting DApp on GitHub" }
+        ],
+        "tech": ["Solidity", "React", "Hardhat", "MetaMask", "Ethereum"],
+        "description": "Decentralized voting application on Ethereum with multi-hop vote delegation, loop prevention, and chairperson-controlled election lifecycle. Deployed to Sepolia testnet. Frontend communicates directly with blockchain via MetaMask wallet.",
+        "metrics": [
+          { "static": "ETH", "label": "Ethereum Blockchain" },
+          { "static": "Multi-hop", "label": "Vote Delegation" },
+          { "static": "Sepolia", "label": "Testnet Deployed" },
+          { "static": "React", "label": "Frontend" }
+        ],
+        "visual": "onchain-flow",
+        "visualAria": "On-chain vote flow: Genesis → Vote 1 → Vote 2 → Tally"
+      }
+    ],
+    "minorLabel": "Minor Exhibits",
+    "minor": [
+      {
+        "tag": "Exhibit M-01 · Algorithm / Visualization",
+        "title": "A* Pathfinding Visualizer",
+        "tech": ["Python", "Pygame"],
+        "description": "Algorithm visualization with animated grid showing A* pathfinding in real-time.",
+        "link": { "label": "Source ↗", "href": "https://github.com/Abrar6801/A-star-Algorithm", "aria": "A* Pathfinding Visualizer on GitHub" }
+      },
+      {
+        "tag": "Exhibit M-02 · Blockchain / NFT",
+        "title": "Blockchain Zombie NFT DApp",
+        "tech": ["Solidity", "Truffle", "MetaMask"],
+        "description": "CryptoZombies-inspired NFT game with battle and evolution mechanics on-chain.",
+        "link": { "label": "Source ↗", "href": "https://github.com/Abrar6801/Advance-Blockchain-Mid-term-project", "aria": "Blockchain Zombie NFT DApp on GitHub" }
+      },
+      {
+        "tag": "Exhibit M-03 · AI / Scheduling",
+        "title": "AI Daily Scheduler",
+        "tech": ["Python", "OpenAI GPT-4o-mini"],
+        "description": "Role-aware intelligent task scheduling engine embedded in the Task Manager application."
+      }
+    ]
+  },
+
+  "education": [
+    {
+      "record": "Record №ED-01",
+      "degree": "Master of Science in Computer Science",
+      "school": "California State University, Fullerton",
+      "dates": "Jan 2024 – Jan 2026",
+      "gpa": "GPA: 3.57",
+      "coursework": "Artificial Intelligence · Advanced Algorithms · Advanced Database Management · OS Design · Modern Software Management"
+    },
+    {
+      "record": "Record №ED-02",
+      "degree": "Bachelor of Technology in Computer Science",
+      "school": "BV Raju Institute of Technology (BVRIT)",
+      "dates": "Aug 2019 – Jun 2023",
+      "gpa": "GPA: 3.7 (8.53/10)",
+      "coursework": "Machine Learning Techniques · Data Science with R · Data Warehousing & Mining · Probability & Statistics · Algorithms"
+    }
+  ],
+
+  "publications": {
+    "papersLabel": "Press Clipping",
+    "papers": [
+      {
+        "masthead": "IEEE Xplore Archive · Technology Desk · ICSCC 2023",
+        "title": "“Detecting Fighter Jets using Convolutional Neural Networks and Transfer Learning”",
+        "meta": "Peer-reviewed · Presented at IEEE ICSCC 2023",
+        "link": { "label": "Inspect Evidence ↗", "href": "https://ieeexplore.ieee.org/document/10334976", "aria": "Read IEEE paper" }
+      }
+    ],
+    "certsLabel": "Credentials on File",
+    "certifications": [
+      { "name": "OCI 2025 AI Foundations Associate", "issuer": "Oracle Cloud Infrastructure", "color": "gold" },
+      { "name": "OCI 2025 Generative AI Professional", "issuer": "Oracle Cloud Infrastructure", "color": "gold" },
+      { "name": "ML Foundations: A Case Study Approach", "issuer": "Coursera / University of Washington", "color": "blue" },
+      { "name": "AI Foundations for Everyone", "issuer": "Coursera", "color": "blue" },
+      { "name": "Python for Everybody", "issuer": "Coursera", "color": "blue" },
+      { "name": "Algorithms (Stanford)", "issuer": "Coursera", "color": "blue" },
+      { "name": "Cybersecurity Foundation", "issuer": "Palo Alto Networks Academy · Nov 2021", "color": "orange" },
+      { "name": "Network Security Fundamentals", "issuer": "Palo Alto Networks Academy", "color": "orange" },
+      { "name": "Cloud Security Fundamentals", "issuer": "Palo Alto Networks Academy · Dec 2021", "color": "orange" },
+      { "name": "Security Operations Fundamentals", "issuer": "Palo Alto Networks Academy · Dec 2021", "color": "orange" },
+      { "name": "Cybersecurity Virtual Internship", "issuer": "Palo Alto Networks / EduSkills / AICTE · Oct–Dec 2021", "color": "orange" },
+      { "name": "R Programming", "issuer": "SoloLearn · Sep 2022", "color": "green" }
+    ]
+  },
+
+  "contact": {
+    "channels": [
+      { "type": "email", "label": "Known Channel — Email", "value": "abrarullahm2001@gmail.com", "href": "mailto:abrarullahm2001@gmail.com", "aria": "Send email to Abrarullah" },
+      { "type": "github", "label": "Evidence Locker — GitHub", "value": "github.com/Abrar6801", "href": "https://github.com/Abrar6801", "aria": "Visit GitHub profile" },
+      { "type": "linkedin", "label": "Public Record — LinkedIn", "value": "Connect on LinkedIn", "href": "https://www.linkedin.com/in/mohammed-abrarullah-92886a193", "aria": "Visit LinkedIn profile" }
+    ]
+  },
+
+  "extras": [
+    { "section": "skills", "type": "coffee-stain", "variant": "cs-skills" },
+    { "section": "philosophy", "type": "coffee-stain", "variant": "cs-phil" },
+    { "section": "publications", "type": "coffee-stain", "variant": "cs-pub" },
+    { "section": "experience", "type": "sticky-note", "text": "Everything he built is logged below — proceed to the Exhibits ↓" }
+  ]
+}
