@@ -1,12 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <text
-    x="32"
-    y="43"
-    text-anchor="middle"
-    font-family="'IBM Plex Mono', 'Courier New', monospace"
-    font-weight="700"
-    font-size="35"
-    letter-spacing="1.4"
-    fill="#c8690a"
-  >AM_</text>
+  <!-- pushpin -->
+  <line x1="32" y1="36" x2="32" y2="58" stroke="#8a8a8a" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="32" cy="24" r="18" fill="#96281b"/>
+  <circle cx="32" cy="24" r="18" fill="none" stroke="#6e1c12" stroke-width="2"/>
+  <circle cx="25" cy="17" r="6" fill="#e74c3c" opacity="0.85"/>
 </svg>
