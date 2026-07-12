@@ -1426,6 +1426,136 @@ a:hover .redacted, a:focus .redacted, .redacted.revealed, .redacted:hover {
 .ci { font-family: var(--mono); font-size: 0.64rem; color: var(--ink-faded); }
 
 /* ============================================================
+   §7.5 THE INTERROGATION ROOM (live RAG demo)
+   ============================================================ */
+.mirror {
+  position: relative;
+  background: linear-gradient(#20242c, #15181e);
+  border: 10px solid #3a3226;
+  border-radius: 6px;
+  box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.65), 5px 8px 26px rgba(0, 0, 0, 0.5);
+  padding: 22px 24px 24px;
+  color: #e8e4d8;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.mirror-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9c8f6d;
+  border-bottom: 1px solid rgba(232, 217, 168, 0.15);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+.rec {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #e74c3c;
+}
+.rec-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e74c3c;
+  animation: recBlink 1.6s infinite;
+}
+@keyframes recBlink { 0%, 100% { opacity: 1; } 55% { opacity: 0.25; } }
+
+.mirror-transcript {
+  max-height: 360px;
+  overflow-y: auto;
+  display: grid;
+  gap: 14px;
+  padding-right: 8px;
+  scrollbar-width: thin;
+}
+.mirror-line .mirror-who {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #d4a017;
+  margin-bottom: 4px;
+}
+.mirror-line--subject .mirror-who { color: #e77b6d; }
+.mirror-line p {
+  font-family: var(--body);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #ddd7c5;
+}
+.mirror-line--pending p { color: #8d8672; font-style: italic; }
+.mirror-src { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.mirror-src a {
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e0ca8a;
+  text-decoration: none;
+  border: 1px solid #7a6b45;
+  border-radius: 3px;
+  padding: 4px 8px;
+}
+.mirror-src a:hover { background: var(--manila); color: var(--wood); }
+
+.mirror-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 14px; }
+.mirror-chip {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  color: #cfc8b4;
+  background: rgba(244, 238, 223, 0.07);
+  border: 1px solid #4a443c;
+  border-radius: 3px;
+  padding: 7px 11px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mirror-chip:hover { background: var(--manila); color: var(--wood); border-color: var(--manila); }
+
+.mirror-form { display: flex; gap: 10px; }
+.mirror-input {
+  flex: 1;
+  min-width: 0;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid #4a443c;
+  border-radius: 4px;
+  color: #efe9db;
+  font-family: var(--body);
+  font-size: 0.92rem;
+  padding: 11px 13px;
+}
+.mirror-input:focus { outline: none; border-color: var(--red); }
+.mirror-input::placeholder { color: #7c7663; }
+.mirror-ask {
+  font-family: var(--type);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e77b6d;
+  background: rgba(192, 57, 43, 0.14);
+  border: 2.5px solid var(--red);
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.mirror-ask:hover:not(:disabled) { background: var(--red); color: var(--paper); }
+.mirror-ask:disabled { opacity: 0.5; cursor: wait; }
+
+@media (max-width: 560px) {
+  .mirror-form { flex-direction: column; }
+}
+
+/* ============================================================
    §8 TIP LINE (contact)
    ============================================================ */
 .contact-layout {

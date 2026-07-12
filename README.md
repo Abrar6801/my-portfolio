@@ -40,8 +40,12 @@ my-portfolio/
 ├── content.json                # All site content (the snapshot / source of truth)
 ├── favicon.svg                 # Pushpin favicon
 ├── photo.jpg / resume-*.pdf    # Assets
+├── api/interrogate.js          # Serverless RAG endpoint (Interrogation Room)
+├── package.json                # Deps for /api functions only (@anthropic-ai/sdk)
 ├── supabase/schema.sql         # content table + RLS policies (run in SQL editor)
+├── supabase/rag-schema.sql     # pgvector documents + rate limiting (run after)
 ├── scripts/seed_supabase.py    # Seed/re-sync the database from content.json
+├── scripts/build_index.py      # Chunk + embed content.json into the RAG index
 └── .github/workflows/
     ├── keepalive.yml           # Pings Supabase every 2 days (free tier never pauses)
     └── snapshot.yml            # Nightly: regenerate content.json from the DB
@@ -71,6 +75,26 @@ the database, which also makes git the content backup.
    to `connect-src` in the CSP in `index.html`.
 5. Add repo secrets `SUPABASE_URL` / `SUPABASE_ANON_KEY` and repo variable
    `SUPABASE_ENABLED=true` so the keep-alive and snapshot workflows run.
+
+### Enabling the Interrogation Room (live RAG demo)
+
+The "Interrogation Room" section lets visitors ask questions answered by a
+real retrieval pipeline over the case file (Voyage embeddings + pgvector +
+Claude). Until configured, it shows an in-theme "still being prepared" note.
+
+1. Run `supabase/rag-schema.sql` in the Supabase SQL editor.
+2. Get API keys: [Anthropic](https://console.anthropic.com) (set a monthly
+   spend cap!) and [Voyage AI](https://voyageai.com) (embeddings; free tier).
+3. Build the index:
+   `python scripts/build_index.py https://YOUR-REF.supabase.co SERVICE_ROLE_KEY VOYAGE_API_KEY`
+   (re-run whenever content changes).
+4. In Vercel → Project → Settings → Environment Variables, add:
+   `ANTHROPIC_API_KEY`, `VOYAGE_API_KEY`, `SUPABASE_URL`,
+   `SUPABASE_SERVICE_ROLE_KEY`; redeploy.
+
+Abuse controls are built in: 300-char questions, 10 questions/hour per IP,
+200/day globally, short capped answers — plus whatever spend cap you set in
+the provider console (the true backstop).
 
 ---
 

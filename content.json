@@ -35,7 +35,19 @@
     "projects":     { "tab": "Exhibits — Physical Evidence", "stamp": "Logged", "note": "Recovered works, tagged and bagged. AI/ML evidence filed first." },
     "education":    { "tab": "Background Check", "stamp": "Verified", "note": "Official records pulled from the education registry. All documents authenticated." },
     "publications": { "tab": "Published Findings", "stamp": "On Record", "note": "Clippings and credentials recovered from public archives." },
+    "interrogate":  { "tab": "Interrogation Room", "stamp": "On the Record", "note": "Question the subject directly. Answers are generated live by a retrieval pipeline the subject built — every claim cites its exhibit." },
     "contact":      { "tab": "Tip Line", "stamp": "Case Open", "note": "Have information about this subject? The department is accepting tips regarding full-time AI/ML engineering roles. H-1B sponsorship required." }
+  },
+
+  "interrogate": {
+    "banner": "TWO-WAY MIRROR · AUTHORIZED QUESTIONS ONLY",
+    "opening": "State your question. I am obligated to answer only from the case file.",
+    "suggestions": [
+      "What is his experience with RAG and LangChain?",
+      "Tell me about the AIReviewHub project.",
+      "Has he worked with PySpark?",
+      "Why should we hire him?"
+    ]
   },
 
   "skills": {

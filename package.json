@@ -1,0 +1,8 @@
+{
+  "name": "my-portfolio",
+  "private": true,
+  "description": "Static evidence-board portfolio; package.json exists only for the /api serverless functions.",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.110.0"
+  }
+}

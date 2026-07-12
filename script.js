@@ -143,7 +143,9 @@ var VISUALS = {
    content.json snapshot as guaranteed fallback (redesign doc §4.7)
    ============================================================ */
 function loadContent() {
-  var snapshot = fetch('content.json').then(function (r) {
+  /* no-cache = revalidate with the server (304 when unchanged), so content
+     edits show up immediately after a deploy without full re-downloads */
+  var snapshot = fetch('content.json', { cache: 'no-cache' }).then(function (r) {
     if (!r.ok) throw new Error('snapshot missing');
     return r.json();
   });
@@ -545,6 +547,102 @@ function renderPublications(mount, pub, header, extras) {
   mount.appendChild(section);
 }
 
+/* ---- §7.5 THE INTERROGATION ROOM ---- */
+function mirrorLine(who, text, pending) {
+  return el('div', {
+    class: 'mirror-line mirror-line--' + who.toLowerCase() + (pending ? ' mirror-line--pending' : '')
+  }, [
+    el('span', { class: 'mirror-who', text: who }),
+    el('p', { text: text })
+  ]);
+}
+
+function renderInterrogation(mount, data, header, extras) {
+  data = data || {};
+  var transcript = el('div', { class: 'mirror-transcript', 'aria-live': 'polite' });
+  transcript.appendChild(mirrorLine('Subject',
+    data.opening || 'State your question. I am obligated to answer only from the case file.'));
+
+  var input = el('input', {
+    type: 'text', class: 'mirror-input', maxlength: '300',
+    placeholder: 'Ask the subject…', 'aria-label': 'Question for the subject'
+  });
+  var askBtn = el('button', { type: 'button', class: 'mirror-ask', text: 'Ask' });
+  var pending = false;
+
+  function ask(question) {
+    question = (question || '').trim().slice(0, 300);
+    if (!question || pending) return;
+    pending = true;
+    askBtn.disabled = true;
+    input.value = '';
+
+    transcript.appendChild(mirrorLine('Interviewer', question));
+    var reply = mirrorLine('Subject', 'Reviewing the case file…', true);
+    transcript.appendChild(reply);
+    transcript.scrollTop = transcript.scrollHeight;
+
+    fetch('/api/interrogate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ question: question })
+    }).then(function (r) {
+      return r.json().then(function (body) { return { status: r.status, body: body }; });
+    }).then(function (result) {
+      reply.classList.remove('mirror-line--pending');
+      var p = reply.querySelector('p');
+      if (result.status === 200 && result.body && result.body.answer) {
+        p.textContent = result.body.answer;
+        var sources = result.body.sources || [];
+        if (sources.length) {
+          reply.appendChild(el('span', { class: 'mirror-src' }, sources.map(function (s) {
+            return el('a', { href: safeHref(String(s.anchor || '#')), text: 'SOURCE: ' + String(s.label || '') });
+          })));
+        }
+      } else if (result.body && result.body.error) {
+        p.textContent = result.body.error;
+      } else {
+        p.textContent = 'The interrogation was interrupted. Try again in a moment.';
+      }
+    }).catch(function () {
+      reply.classList.remove('mirror-line--pending');
+      reply.querySelector('p').textContent =
+        'The interrogation room is temporarily unavailable — the tip line below still works.';
+    }).then(function () {
+      pending = false;
+      askBtn.disabled = false;
+      transcript.scrollTop = transcript.scrollHeight;
+    });
+  }
+
+  askBtn.addEventListener('click', function () { ask(input.value); });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') ask(input.value);
+  });
+
+  var section = el('section', { id: 'interrogate', class: 'swrap' }, [
+    caseHeader(header),
+    el('div', { class: 'mirror fi' }, [
+      el('div', { class: 'mirror-head' }, [
+        el('span', { text: data.banner || 'TWO-WAY MIRROR · AUTHORIZED QUESTIONS ONLY' }),
+        el('span', { class: 'rec' }, [
+          el('span', { class: 'rec-dot', 'aria-hidden': 'true' }),
+          'REC'
+        ])
+      ]),
+      transcript,
+      el('div', { class: 'mirror-chips' }, (data.suggestions || []).map(function (q) {
+        var chip = el('button', { type: 'button', class: 'mirror-chip', text: q });
+        chip.addEventListener('click', function () { ask(q); });
+        return chip;
+      })),
+      el('div', { class: 'mirror-form' }, [input, askBtn])
+    ])
+  ]);
+  renderExtras(section, 'interrogate', extras);
+  mount.appendChild(section);
+}
+
 /* ---- §8 TIP LINE ---- */
 function renderContact(mount, contact, header, extras) {
   var channels = el('div', { class: 'cc-grid' }, (contact.channels || []).map(function (c) {
@@ -610,6 +708,7 @@ loadContent().then(function (content) {
   renderProjects(document.getElementById('sec-projects'), content.projects || {}, h.projects || {}, content.extras);
   renderEducation(document.getElementById('sec-education'), content.education, h.education || {}, content.extras);
   renderPublications(document.getElementById('sec-publications'), content.publications || {}, h.publications || {}, content.extras);
+  renderInterrogation(document.getElementById('sec-interrogate'), content.interrogate || {}, h.interrogate || { tab: 'Interrogation Room', stamp: 'On the Record', note: '' }, content.extras);
   renderContact(document.getElementById('sec-contact'), content.contact || {}, h.contact || {}, content.extras);
   initSections(content);
 }).catch(function (err) {
@@ -621,7 +720,7 @@ function initSections(content) {
 
   /* ===== ACTIVE NAV via IntersectionObserver ===== */
   var navAnchors = document.querySelectorAll('.nav-links a[data-sec]');
-  var secIds = ['about','skills','philosophy','experience','projects','education','publications','contact'];
+  var secIds = ['about','skills','philosophy','experience','projects','education','publications','interrogate','contact'];
   var navObs = new IntersectionObserver(function (entries) {
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
@@ -945,6 +1044,12 @@ function initSections(content) {
   /* ===== RED STRING — draw the thread across the whole board ===== */
   drawStrings();
 
+  /* ===== DEEP LINKS — sections render after load, so honor the hash now ===== */
+  if (location.hash) {
+    var target = document.getElementById(location.hash.slice(1));
+    if (target) target.scrollIntoView();
+  }
+
 }
 
 /* ===== RED STRING LAYER ===== */
@@ -954,7 +1059,7 @@ function drawStrings() {
   var old = document.getElementById('string-layer');
   if (old) old.parentNode.removeChild(old);
 
-  var ids = ['about', 'skills', 'philosophy', 'experience', 'projects', 'education', 'publications', 'contact'];
+  var ids = ['about', 'skills', 'philosophy', 'experience', 'projects', 'education', 'publications', 'interrogate', 'contact'];
   var W = main.offsetWidth;
   var H = main.scrollHeight;
   var NS = 'http://www.w3.org/2000/svg';
