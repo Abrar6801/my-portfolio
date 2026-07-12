@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE WAR ROOM | Case №2026-AM</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=7">
+
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com data:; img-src 'self' data:; script-src 'self'; connect-src 'self' https://*.supabase.co; base-uri 'none'; form-action 'self';">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+  <!-- ===== BADGE CHECK (login) ===== -->
+  <div id="loginView" class="login-wrap">
+    <div class="login-card">
+      <p class="login-kicker">Case №2026-AM · Restricted Area</p>
+      <h1 class="login-title">The War Room</h1>
+      <span class="stamp login-stamp">Authorized Personnel Only</span>
+
+      <div id="configNotice" class="notice" hidden>
+        Supabase is not configured yet — fill in <code>config.js</code> with your
+        project URL and anon key, then reload this page.
+      </div>
+
+      <div class="fg">
+        <label class="fl" for="loginEmail">Badge ID (Email)</label>
+        <input type="email" id="loginEmail" class="fi-t" autocomplete="username">
+      </div>
+      <div class="fg">
+        <label class="fl" for="loginPassword">Passphrase</label>
+        <input type="password" id="loginPassword" class="fi-t" autocomplete="current-password">
+      </div>
+      <p id="loginError" class="ferr"></p>
+      <button id="loginBtn" class="fsub">Present Badge</button>
+
+      <p class="login-foot"><a href="index.html">← back to the board</a></p>
+    </div>
+  </div>
+
+  <!-- ===== THE WAR ROOM (app) ===== -->
+  <div id="appView" hidden>
+    <header class="war-bar">
+      <span class="war-title">The War Room · Case №2026-AM</span>
+      <span class="war-user" id="warUser"></span>
+      <nav class="war-actions">
+        <a href="index.html" target="_blank" rel="noopener">View the board ↗</a>
+        <button id="logoutBtn">Surrender badge</button>
+      </nav>
+    </header>
+
+    <main class="war-main">
+      <p id="statusLine" class="status-line" hidden></p>
+
+      <!-- Quick actions -->
+      <h2 class="war-h2">Quick Filing</h2>
+      <div class="quick-grid">
+
+        <details class="folder">
+          <summary>📁 Log New Exhibit (project)</summary>
+          <div class="folder-body">
+            <div class="fg"><label class="fl" for="qpTitle">Title</label><input id="qpTitle" class="fi-t"></div>
+            <div class="fg"><label class="fl" for="qpClass">Classification (e.g. Retrieval System / NLP)</label><input id="qpClass" class="fi-t"></div>
+            <div class="fg"><label class="fl" for="qpDesc">Case notes (description)</label><textarea id="qpDesc" class="fi-ta"></textarea></div>
+            <div class="fg"><label class="fl" for="qpTech">Tech stack (comma-separated)</label><input id="qpTech" class="fi-t" placeholder="Python, LangChain, pgvector"></div>
+            <div class="fg"><label class="fl" for="qpLive">Live demo URL (optional, https)</label><input id="qpLive" class="fi-t"></div>
+            <div class="fg"><label class="fl" for="qpSrc">Source URL (optional, https)</label><input id="qpSrc" class="fi-t"></div>
+            <label class="fl chk"><input type="checkbox" id="qpMinor"> file as MINOR exhibit</label>
+            <button class="fsub" data-quick="project">File Exhibit</button>
+          </div>
+        </details>
+
+        <details class="folder">
+          <summary>📁 Add Capability (skill)</summary>
+          <div class="folder-body">
+            <div class="fg"><label class="fl" for="qsName">Skill name</label><input id="qsName" class="fi-t" placeholder="pgvector"></div>
+            <div class="fg">
+              <label class="fl" for="qsRow">Carousel row</label>
+              <select id="qsRow" class="fi-t">
+                <option value="row1">Row 1 — Primary Toolkit (GenAI/ML)</option>
+                <option value="row2">Row 2 — Supporting Toolkit</option>
+                <option value="">Don't add to carousel</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label class="fl" for="qsCard">Also add to capability card</label>
+              <select id="qsCard" class="fi-t"><option value="">— none —</option></select>
+            </div>
+            <button class="fsub" data-quick="skill">File Capability</button>
+          </div>
+        </details>
+
+        <details class="folder">
+          <summary>📁 Add Credential (certification)</summary>
+          <div class="folder-body">
+            <div class="fg"><label class="fl" for="qcName">Credential name</label><input id="qcName" class="fi-t"></div>
+            <div class="fg"><label class="fl" for="qcIssuer">Issuer · date</label><input id="qcIssuer" class="fi-t" placeholder="Coursera · Jul 2026"></div>
+            <div class="fg">
+              <label class="fl" for="qcColor">Seal colour</label>
+              <select id="qcColor" class="fi-t">
+                <option value="gold">Gold</option><option value="blue">Blue</option>
+                <option value="orange">Orange</option><option value="green">Green</option>
+              </select>
+            </div>
+            <button class="fsub" data-quick="cert">File Credential</button>
+          </div>
+        </details>
+
+        <details class="folder">
+          <summary>📁 Log Sighting (experience)</summary>
+          <div class="folder-body">
+            <div class="fg"><label class="fl" for="qeRole">Role</label><input id="qeRole" class="fi-t"></div>
+            <div class="fg"><label class="fl" for="qeCompany">Company</label><input id="qeCompany" class="fi-t"></div>
+            <div class="fg"><label class="fl" for="qeDates">Dates</label><input id="qeDates" class="fi-t" placeholder="Jul 2026 – Present"></div>
+            <div class="fg"><label class="fl" for="qeLoc">Location</label><input id="qeLoc" class="fi-t"></div>
+            <div class="fg"><label class="fl" for="qeBullets">Bullets (one per line)</label><textarea id="qeBullets" class="fi-ta"></textarea></div>
+            <button class="fsub" data-quick="sighting">File Sighting</button>
+          </div>
+        </details>
+
+        <details class="folder">
+          <summary>📁 Pin Board Extra (sticky note)</summary>
+          <div class="folder-body">
+            <div class="fg">
+              <label class="fl" for="qxSection">Pin to section</label>
+              <select id="qxSection" class="fi-t">
+                <option value="skills">Capabilities</option><option value="philosophy">Psych Profile</option>
+                <option value="experience">Surveillance</option><option value="projects">Exhibits</option>
+                <option value="education">Records</option><option value="publications">Findings</option>
+                <option value="contact">Tip Line</option>
+              </select>
+            </div>
+            <div class="fg"><label class="fl" for="qxText">Note text</label><textarea id="qxText" class="fi-ta"></textarea></div>
+            <button class="fsub" data-quick="extra">Pin It</button>
+          </div>
+        </details>
+
+      </div>
+
+      <!-- Full section editors -->
+      <h2 class="war-h2">Full Case File (advanced)</h2>
+      <p class="war-hint">Each section of the site is one document. Open it, edit the JSON, save. Invalid JSON is refused before it ever reaches the database.</p>
+      <div id="sectionList" class="section-list"></div>
+
+      <div id="editorPanel" class="editor" hidden>
+        <div class="editor-head">
+          <span class="editor-title" id="editorTitle"></span>
+          <span class="editor-meta" id="editorMeta"></span>
+        </div>
+        <textarea id="editorArea" spellcheck="false"></textarea>
+        <p id="editorError" class="ferr"></p>
+        <div class="editor-actions">
+          <button id="editorSave" class="fsub">Save to Case File</button>
+          <button id="editorCancel" class="btn-ghost">Discard</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="config.js" defer></script>
+  <script src="admin.js" defer></script>
+</body>
+</html>
