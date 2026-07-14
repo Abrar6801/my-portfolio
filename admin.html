@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="admin.css?v=p5">
 </head>
 <body>
 
@@ -50,6 +50,7 @@
       <span class="war-user" id="warUser"></span>
       <nav class="war-actions">
         <a href="index.html" target="_blank" rel="noopener">View the board ↗</a>
+        <button id="reindexBtn" title="Re-embed the case file so the Interrogation Room learns your latest edits">Rebuild index</button>
         <button id="logoutBtn">Surrender badge</button>
       </nav>
     </header>
@@ -147,6 +148,11 @@
       <p class="war-hint">Each section of the site is one document. Open it, edit the JSON, save. Invalid JSON is refused before it ever reaches the database.</p>
       <div id="sectionList" class="section-list"></div>
 
+      <!-- Interrogation log -->
+      <h2 class="war-h2">Interrogation Log</h2>
+      <p class="war-hint">What visitors have been asking the subject — your market research.</p>
+      <div id="questionLog" class="qlog"></div>
+
       <div id="editorPanel" class="editor" hidden>
         <div class="editor-head">
           <span class="editor-title" id="editorTitle"></span>
@@ -162,7 +168,7 @@
     </main>
   </div>
 
-  <script src="config.js?v=p4" defer></script>
-  <script src="admin.js?v=p4" defer></script>
+  <script src="config.js?v=p5" defer></script>
+  <script src="admin.js?v=p5" defer></script>
 </body>
 </html>

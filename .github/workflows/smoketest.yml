@@ -1,0 +1,34 @@
+# Fires after every successful Vercel production deploy and checks the
+# three things that matter: the board loads, the content snapshot is
+# valid, and the Interrogation Room answers. A red X here means a
+# recruiter would be seeing a broken site right now.
+name: Post-deploy smoke test
+
+on:
+  deployment_status: {}
+
+jobs:
+  smoke:
+    if: >-
+      github.event.deployment_status.state == 'success' &&
+      contains(github.event.deployment.environment, 'Production')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Board loads
+        run: |
+          curl -fsS --retry 3 https://abrarullah-mohammed.vercel.app/ | grep -q "CASE FILE"
+          echo "Board is up."
+
+      - name: Content snapshot is valid JSON with required sections
+        run: |
+          curl -fsS https://abrarullah-mohammed.vercel.app/content.json \
+            | python3 -c "import json,sys; d=json.load(sys.stdin); assert d['profile'] and d['projects'], 'missing sections'"
+          echo "Snapshot is valid."
+
+      - name: Interrogation Room answers
+        run: |
+          RESP=$(curl -fsS -X POST https://abrarullah-mohammed.vercel.app/api/interrogate \
+            -H 'Content-Type: application/json' \
+            -d '{"question":"SMOKE TEST: what is his specialization?"}')
+          echo "$RESP" | python3 -c "import json,sys; d=json.load(sys.stdin); assert d.get('answer'), d"
+          echo "The subject is answering questions."

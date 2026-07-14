@@ -143,7 +143,77 @@ function enterApp() {
   }).catch(function (e) {
     setStatus('Could not load case file: ' + e.message);
   });
+  loadQuestionLog();
 }
+
+/* ---------- interrogation log ---------- */
+function loadQuestionLog() {
+  var log = $('questionLog');
+  log.textContent = '';
+  ensureFreshToken().then(function () {
+    return fetch(CFG.url + '/rest/v1/asked_questions'
+      + '?select=question,cached,created_at&order=created_at.desc&limit=50', {
+      headers: {
+        apikey: CFG.anonKey,
+        Authorization: 'Bearer ' + state.session.access_token
+      }
+    });
+  }).then(function (r) {
+    if (!r.ok) throw new Error('log unavailable');
+    return r.json();
+  }).then(function (rows) {
+    if (!rows.length) {
+      log.appendChild(el('p', 'qlog-empty', 'No questions on record yet. Share the site and watch this space.'));
+      return;
+    }
+    rows.forEach(function (row) {
+      var meta = (row.created_at || '').slice(0, 16).replace('T', ' ')
+        + (row.cached ? ' · ' : '');
+      var metaSpan = el('span', 'qlog-meta', meta);
+      if (row.cached) metaSpan.appendChild(el('span', 'cached', 'CACHED'));
+      var line = el('div', 'qlog-row', '');
+      line.appendChild(el('span', 'qlog-q', row.question));
+      line.appendChild(metaSpan);
+      log.appendChild(line);
+    });
+  }).catch(function () {
+    log.appendChild(el('p', 'qlog-empty',
+      'Question log not set up yet — run supabase/telemetry-schema.sql in the Supabase SQL editor.'));
+  });
+}
+
+function el(tag, className, text) {
+  var node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text) node.textContent = text;
+  return node;
+}
+
+/* ---------- rebuild index ---------- */
+$('reindexBtn').addEventListener('click', function () {
+  var btn = $('reindexBtn');
+  btn.disabled = true;
+  btn.textContent = 'Rebuilding…';
+  ensureFreshToken().then(function () {
+    return fetch('/api/reindex', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + state.session.access_token }
+    });
+  }).then(function (r) {
+    return r.json().then(function (body) { return { ok: r.ok, body: body }; });
+  }).then(function (result) {
+    if (result.ok) {
+      setStatus('Index rebuilt: ' + result.body.indexed + ' documents. The Interrogation Room is up to date.');
+    } else {
+      setStatus('Rebuild refused: ' + (result.body.error || 'unknown error'));
+    }
+  }).catch(function (e) {
+    setStatus('Rebuild failed: ' + e.message);
+  }).then(function () {
+    btn.disabled = false;
+    btn.textContent = 'Rebuild index';
+  });
+});
 
 function enterLogin() {
   show($('appView'), false);

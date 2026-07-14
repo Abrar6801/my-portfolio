@@ -1088,6 +1088,16 @@ function drawStrings() {
     var my = (pts[i - 1].y + pts[i].y) / 2 + 90;
     d += ' Q ' + mx + ' ' + my + ' ' + pts[i].x + ' ' + pts[i].y;
   }
+  /* offset shadow path — much cheaper to paint than a CSS drop-shadow
+     filter over an SVG the height of the whole page */
+  var shadow = document.createElementNS(NS, 'path');
+  shadow.setAttribute('d', d);
+  shadow.setAttribute('fill', 'none');
+  shadow.setAttribute('stroke', 'rgba(20, 10, 5, 0.3)');
+  shadow.setAttribute('stroke-width', '2.5');
+  shadow.setAttribute('transform', 'translate(1.5, 2.5)');
+  svg.appendChild(shadow);
+
   var path = document.createElementNS(NS, 'path');
   path.setAttribute('d', d);
   path.setAttribute('fill', 'none');
@@ -1159,15 +1169,21 @@ window.addEventListener('load', drawStrings);
 (function () {
   var btn = document.getElementById('cleanToggle');
   if (!btn) return;
-  function setClean(on) {
+  function setClean(on, persist) {
     document.body.classList.toggle('clean-mode', on);
     btn.textContent = on ? 'View Evidence Board' : 'View Clean File';
     btn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    try { localStorage.setItem('cleanMode', on ? '1' : '0'); } catch (e) { /* private mode */ }
+    if (persist !== false) {
+      try { localStorage.setItem('cleanMode', on ? '1' : '0'); } catch (e) { /* private mode */ }
+    }
   }
+  /* ?clean=1 links open the flat recruiter-friendly view without
+     changing the visitor's saved preference */
+  var wantClean = /[?&]clean=1(&|$)/.test(location.search);
   var saved = null;
   try { saved = localStorage.getItem('cleanMode'); } catch (e) { /* private mode */ }
-  if (saved === '1') setClean(true);
+  if (wantClean) setClean(true, false);
+  else if (saved === '1') setClean(true);
   btn.addEventListener('click', function () {
     setClean(!document.body.classList.contains('clean-mode'));
   });

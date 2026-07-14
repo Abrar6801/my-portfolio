@@ -24,6 +24,7 @@
    ============================================================ */
 
 const Anthropic = require('@anthropic-ai/sdk');
+const crypto = require('crypto');
 
 const MAX_QUESTION_CHARS = 300;
 const MATCH_COUNT = 5;
@@ -74,6 +75,49 @@ async function bumpCounter(cfg, key, limit) {
   });
   if (!r.ok) throw new Error(`counter rpc ${r.status}`);
   return r.json(); /* boolean: request allowed? */
+}
+
+function sbHeaders(cfg, extra) {
+  return Object.assign({
+    apikey: cfg.serviceKey,
+    Authorization: `Bearer ${cfg.serviceKey}`,
+    'Content-Type': 'application/json'
+  }, extra || {});
+}
+
+function questionHash(question) {
+  const normalized = question.toLowerCase().replace(/\s+/g, ' ').trim();
+  return crypto.createHash('sha256').update(normalized).digest('hex');
+}
+
+/* Telemetry is best-effort: if the tables are missing or the calls
+   fail, answering must still work. */
+async function cacheGet(cfg, hash) {
+  try {
+    const r = await fetch(
+      `${cfg.url}/rest/v1/answer_cache?question_hash=eq.${hash}&select=answer`,
+      { headers: sbHeaders(cfg) }
+    );
+    if (!r.ok) return null;
+    const rows = await r.json();
+    return rows.length ? rows[0].answer : null;
+  } catch (e) { return null; }
+}
+
+function cacheSet(cfg, hash, question, answerBody) {
+  return fetch(`${cfg.url}/rest/v1/answer_cache?on_conflict=question_hash`, {
+    method: 'POST',
+    headers: sbHeaders(cfg, { Prefer: 'resolution=merge-duplicates,return=minimal' }),
+    body: JSON.stringify([{ question_hash: hash, question, answer: answerBody }])
+  }).catch(() => {});
+}
+
+function logQuestion(cfg, question, cached) {
+  return fetch(`${cfg.url}/rest/v1/asked_questions`, {
+    method: 'POST',
+    headers: sbHeaders(cfg, { Prefer: 'return=minimal' }),
+    body: JSON.stringify([{ question, cached }])
+  }).catch(() => {});
 }
 
 async function embedQuestion(question) {
@@ -142,6 +186,14 @@ module.exports = async function handler(req, res) {
       return themed(res, 429, 'The subject has invoked the right to remain silent. Try again later.');
     }
 
+    /* cache: repeat questions answer instantly and cost nothing */
+    const hash = questionHash(question);
+    const cachedAnswer = await cacheGet(cfg, hash);
+    if (cachedAnswer) {
+      await logQuestion(cfg, question, true);
+      return res.status(200).json(cachedAnswer);
+    }
+
     /* retrieve */
     const embedding = await embedQuestion(question);
     const docs = await searchDocuments(cfg, embedding);
@@ -187,7 +239,12 @@ module.exports = async function handler(req, res) {
       if (sources.length >= 3) break;
     }
 
-    return res.status(200).json({ answer, sources });
+    const body = { answer, sources };
+    await Promise.all([
+      cacheSet(cfg, hash, question, body),
+      logQuestion(cfg, question, false)
+    ]);
+    return res.status(200).json(body);
   } catch (err) {
     console.error('interrogate error:', err);
     return themed(res, 500, 'The interrogation was interrupted. Try again in a moment.');

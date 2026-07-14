@@ -33,7 +33,7 @@ html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 84px; }
   --body:  'Courier Prime', 'Courier New', monospace;
   --hand:  'Caveat', cursive;
   --mono:  'IBM Plex Mono', 'Courier New', monospace;
-  --serif: 'Playfair Display', Georgia, serif;
+  --serif: Georgia, 'Times New Roman', serif; /* system serif: saves a whole font family download */
 }
 
 /* ===== THE BOARD (body) ===== */
@@ -1767,7 +1767,8 @@ footer p {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.4));
+  /* shadow is drawn as an offset path inside the SVG — a filter here
+     forces an expensive rasterization of the full-page layer */
 }
 @media (max-width: 720px) { #string-layer { display: none; } }
 

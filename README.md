@@ -96,19 +96,35 @@ Abuse controls are built in: 300-char questions, 10 questions/hour per IP,
 200/day globally, short capped answers — plus whatever spend cap you set in
 the provider console (the true backstop).
 
+Extras (run `supabase/telemetry-schema.sql` once to enable):
+- **Question log** — every visitor question is recorded and shown in the
+  War Room ("Interrogation Log"), so you can see what recruiters ask.
+- **Answer cache** — repeat questions answer instantly at zero token cost;
+  the cache is cleared automatically on every index rebuild.
+- **Rebuild Index button** — in the War Room header; re-chunks and re-embeds
+  the live database content so the bot learns your edits (no terminal needed).
+- **Post-deploy smoke test** — `.github/workflows/smoketest.yml` checks the
+  board, the snapshot, and the bot after every production deploy.
+- **Recruiter link** — append `?clean=1` to the URL to open the flat,
+  printable view without changing the visitor's saved preference.
+
 ---
 
 ## Running locally
 
-Any static server works (`fetch()` needs HTTP, not `file://`):
+For the static site alone, any HTTP server works (`fetch()` needs HTTP,
+not `file://`):
 
 ```bash
 python -m http.server 8080
-# or
-npx serve .
 ```
 
-Then open http://localhost:8080.
+To also run the `/api` serverless functions locally (Interrogation Room,
+reindex), use Vercel's dev server instead:
+
+```bash
+npx vercel dev
+```
 
 ---
 
