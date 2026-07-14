@@ -3,6 +3,9 @@
    ============================================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* the hidden attribute must always win, even over display:grid/flex rules */
+[hidden] { display: none !important; }
+
 :root {
   --cork:      #8b6b4a;
   --paper:     #f4eedf;
