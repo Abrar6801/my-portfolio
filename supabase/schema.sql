@@ -46,23 +46,19 @@ create policy "public read"
   using (true);
 
 -- ONLY the owner may insert/update/delete.
--- Replace YOUR-USER-UUID with your auth user id
--- (Dashboard → Authentication → Users → your account → UUID),
--- then re-run this block.
+-- (The UUID below is the owner's auth user id — not a secret;
+-- it grants nothing without that account's password.)
 drop policy if exists "owner writes" on public.content;
 create policy "owner writes"
   on public.content for all
-  using  (auth.uid() = 'YOUR-USER-UUID'::uuid)
-  with check (auth.uid() = 'YOUR-USER-UUID'::uuid);
+  using  (auth.uid() = 'bbc11068-828e-4235-a723-f3b4bb8e198b'::uuid)
+  with check (auth.uid() = 'bbc11068-828e-4235-a723-f3b4bb8e198b'::uuid);
 
 -- ============================================================
 -- Checklist after running this (see EVIDENCE_BOARD_REDESIGN.md §5–6):
 --  1. Authentication → Sign In / Up: DISABLE new user signups.
 --  2. Create exactly one user (you), with a strong password.
 --  3. Enable MFA (TOTP) on that account.
---  4. Paste that user's UUID into the "owner writes" policy above
---     and re-run it.
---  5. Seed the data:  python scripts/seed_supabase.py
---  6. Put the project URL + anon key into config.js, and add the
---     project origin to the CSP connect-src in index.html.
+--  4. Seed the data:  python scripts/seed_supabase.py
+--  5. Put the project URL + anon key into config.js.
 -- ============================================================
