@@ -104,6 +104,11 @@ def build_documents(content: dict) -> list[dict]:
                          for c in content.get("contact", {}).get("channels", []))
     add("contact", "TIP LINE", "#contact", f"Contact channels: {channels}")
 
+    # Facts not displayed on the board but answerable when asked directly
+    # (the system prompt forbids volunteering these).
+    for note in content.get("confidential", {}).get("notes", []):
+        add("confidential", "ADMINISTRATIVE NOTE", "#contact", note)
+
     return docs
 
 

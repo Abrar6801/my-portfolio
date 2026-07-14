@@ -5,10 +5,10 @@
     "occupation": "Occupation: AI/ML Engineer — LLM & RAG Systems",
     "badge": "IEEE Published · ICSCC 2023 · Computer Vision",
     "dossier": [
-      { "label": "Last Known Location", "value": "Fullerton, CA" },
+      { "label": "Specialization", "value": "RAG & LLM Systems" },
       { "label": "Known Channel", "value": "abrarullahm2001@gmail.com" },
       { "label": "Available for Duty", "value": "May 2026" },
-      { "label": "Special Condition", "value": "Requires H-1B sponsorship" }
+      { "label": "Track Record", "value": "IEEE-published · Production-deployed" }
     ],
     "bio": "IEEE-published CNN research. Production FastAPI / PyTorch systems. 14K-record PySpark pipelines. Currently building retrieval-augmented generation systems with LangChain, LlamaIndex & LangGraph. MS Computer Science, Cal State Fullerton — seeking full-time AI/ML engineering roles.",
     "modusOperandi": "Ingests unstructured documents. Chunks, embeds & indexes them. Retrieves exactly what matters — and makes language models tell the truth about it.",
@@ -36,7 +36,7 @@
     "education":    { "tab": "Background Check", "stamp": "Verified", "note": "Official records pulled from the education registry. All documents authenticated." },
     "publications": { "tab": "Published Findings", "stamp": "On Record", "note": "Clippings and credentials recovered from public archives." },
     "interrogate":  { "tab": "Interrogation Room", "stamp": "On the Record", "note": "Question the subject directly. Answers are generated live by a retrieval pipeline the subject built — every claim cites its exhibit." },
-    "contact":      { "tab": "Tip Line", "stamp": "Case Open", "note": "Have information about this subject? The department is accepting tips regarding full-time AI/ML engineering roles. H-1B sponsorship required." }
+    "contact":      { "tab": "Tip Line", "stamp": "Case Open", "note": "Have information about this subject? The department is accepting tips regarding full-time AI/ML engineering roles." }
   },
 
   "interrogate": {
@@ -315,6 +315,13 @@
       { "type": "email", "label": "Known Channel — Email", "value": "abrarullahm2001@gmail.com", "href": "mailto:abrarullahm2001@gmail.com", "aria": "Send email to Abrarullah" },
       { "type": "github", "label": "Evidence Locker — GitHub", "value": "github.com/Abrar6801", "href": "https://github.com/Abrar6801", "aria": "Visit GitHub profile" },
       { "type": "linkedin", "label": "Public Record — LinkedIn", "value": "Connect on LinkedIn", "href": "https://www.linkedin.com/in/mohammed-abrarullah-92886a193", "aria": "Visit LinkedIn profile" }
+    ]
+  },
+
+  "confidential": {
+    "notes": [
+      "Work authorization: the subject will require H-1B visa sponsorship for long-term U.S. employment. He holds a Master of Science in Computer Science from a U.S. university and is available to start May 2026.",
+      "Location: based in Southern California."
     ]
   },
 
