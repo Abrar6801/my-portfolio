@@ -5,7 +5,7 @@ designed as a detective's **evidence board**: corkboard, index cards, polaroids,
 red string, rubber stamps — the visitor works the case. Built with vanilla HTML,
 CSS, and JavaScript. No frameworks, no build step, zero npm dependencies.
 
-**Live site:** deployed on Vercel (auto-deploys from `main`).
+**Live site:** [abrarullah-mohammed.vercel.app](https://abrarullah-mohammed.vercel.app/) (auto-deploys from `main`).
 
 The full design/architecture plan lives in
 [`EVIDENCE_BOARD_REDESIGN.md`](EVIDENCE_BOARD_REDESIGN.md).
