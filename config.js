@@ -17,6 +17,6 @@
      connect-src 'self' https://YOUR-PROJECT-REF.supabase.co;
    ============================================================ */
 window.SUPABASE_CONFIG = {
-  url: '',      /* e.g. 'https://abcdefghijklm.supabase.co' */
-  anonKey: ''   /* the "anon / public" API key from Project Settings → API */
+  url: 'https://wnqeuhuskbyzqxgkfmbm.supabase.co',
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InducWV1aHVza2J5enF4Z2tmbWJtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM5ODczMTMsImV4cCI6MjA5OTU2MzMxM30.aAZTXW4mOSGCTryEZKlIOjpaxR5q3jMvLemH8S5OHvc'
 };
