@@ -153,6 +153,15 @@ function enterLogin() {
 function renderSections() {
   var list = $('sectionList');
   list.textContent = '';
+  if (Object.keys(state.content).length === 0) {
+    var empty = document.createElement('p');
+    empty.className = 'war-hint';
+    empty.textContent = 'The case file is empty — the database has not been seeded yet. '
+      + 'Run: python scripts/seed_supabase.py <SUPABASE_URL> <SERVICE_ROLE_KEY> '
+      + 'then reload this page.';
+    list.appendChild(empty);
+    return;
+  }
   Object.keys(state.content).sort().forEach(function (key) {
     var entry = state.content[key];
     var info = document.createElement('div');
